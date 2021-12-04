@@ -4,7 +4,9 @@ package chat;
 option go_package = "./;chat";
 
 message Message {
-    string body = 1;
+    string planeta = 1;
+    string ciudad = 2;
+    string valor = 3;
 }
 
 service Chat {

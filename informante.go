@@ -116,13 +116,13 @@ func main() {
 		}
 
 		message := chat.Message{
-			Body: decision,
+			Planeta: decision,
 		}
 		response, err := c.SendMessage(context.Background(), &message)
 		if err != nil {
 			log.Fatalf("Error when calling SendMessage: %s", err)
 		}
-		log.Printf("Response from server: %s", response.Body)
+		log.Printf("Response from server: %s", response.Planeta)
 
 		contador ++
 
