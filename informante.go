@@ -158,6 +158,7 @@ func main() {
 					log.Fatalf("Error when calling SendMessage: %s", err)
 				}
 				log.Printf("Response from server: %d", response.Server)
+				
 
 			// Código para actualizar el nombre de la ciudad
 			case "2":
