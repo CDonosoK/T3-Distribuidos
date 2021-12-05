@@ -11,7 +11,7 @@ import(
 
 )
 
-func AddCity(){
+func AddCity() chat.Message{
 	var nombrePlaneta string
 	fmt.Println("Ingrese el nombre del planeta: ")
 	fmt.Scan(&nombrePlaneta)
@@ -26,13 +26,21 @@ func AddCity(){
 	if (nuevoValor == "") {
 		nuevoValor = "0"
 	}
+
+	mensaje := chat.Message{
+		Planeta: nombrePlaneta,
+		Ciudad: nombreCiudad,
+		Valor: nuevoValor,
+	}
+
+	return mensaje
 	/*
 	Conexión con los servidores fulcrum para agregar la ciudad
 	*/
 
 }
 
-func UpdateName(){
+func UpdateName() chat.Message{
 	var nombrePlaneta string
 	fmt.Println("Ingrese el nombre del planeta: ")
 	fmt.Scan(&nombrePlaneta)
@@ -45,6 +53,14 @@ func UpdateName(){
 	fmt.Println("Ingrese el nuevo nombre: ")
 	fmt.Scan(&nuevoValor)
 
+	mensaje := chat.Message{
+		Planeta: nombrePlaneta,
+		Ciudad: nombreCiudad,
+		Valor: nuevoValor,
+	}
+
+	return mensaje
+
 	/*
 	Conexión con los servidores fulcrum para actualizar el nombre
 	*/
@@ -52,7 +68,7 @@ func UpdateName(){
 
 }
 
-func UpdateNumber(){
+func UpdateNumber() chat.Message{
 	var nombrePlaneta string
 	fmt.Println("Ingrese el nombre del planeta: ")
 	fmt.Scan(&nombrePlaneta)
@@ -64,6 +80,14 @@ func UpdateNumber(){
 	var nuevoValor string
 	fmt.Println("Ingrese el nuevo valor: ")
 	fmt.Scan(&nuevoValor)
+
+	mensaje := chat.Message{
+		Planeta: nombrePlaneta,
+		Ciudad: nombreCiudad,
+		Valor: nuevoValor,
+	}
+
+	return mensaje
 	/*
 	Conexión con los servidores fulcrum para actualizar el valor
 	*/
@@ -71,7 +95,7 @@ func UpdateNumber(){
 
 }
 
-func DeleteCity(){
+func DeleteCity() chat.Message{
 	var nombrePlaneta string
 	fmt.Println("Ingrese el nombre del planeta: ")
 	fmt.Scan(&nombrePlaneta)
@@ -79,6 +103,14 @@ func DeleteCity(){
 	var nombreCiudad string
 	fmt.Println("Ingrese el nombre de la ciudad: ")
 	fmt.Scan(&nombreCiudad)
+
+	mensaje := chat.Message{
+		Planeta: nombrePlaneta,
+		Ciudad: nombreCiudad,
+		Valor: "-",
+	}
+
+	return mensaje
 	/*
 	Conexión con los servidores fulcrum para eliminar la ciudad
 	*/
@@ -104,29 +136,42 @@ func main() {
 		fmt.Println("¿Qué comando desea utilizar? \n [1] AddCity \n [2] UpdateName \n [3] UpdateNumber \n [4] DeleteCity")
 		fmt.Scan(&decision)
 
+		message := chat.Message{}
+
 		switch decision {
 		case "1":
-			AddCity()
+			message = AddCity()
+			response, err := c.AddCityMessage(context.Background(), &message)
+			if err != nil {
+				log.Fatalf("Error when calling SendMessage: %s", err)
+			}
+			log.Printf("Response from server: %s", response.Planeta)
 		case "2":
-			UpdateName()
+			message = UpdateName()
+			response, err := c.UpdateNameMessage(context.Background(), &message)
+			if err != nil {
+				log.Fatalf("Error when calling SendMessage: %s", err)
+			}
+			log.Printf("Response from server: %s", response.Planeta)
 		case "3":
-			UpdateNumber()
+			message = UpdateNumber()
+			response, err := c.UpdateNumberMessage(context.Background(), &message)
+			if err != nil {
+				log.Fatalf("Error when calling SendMessage: %s", err)
+			}
+			log.Printf("Response from server: %s", response.Planeta)
 		case "4":
-			DeleteCity()
+			message = DeleteCity()
+			response, err := c.DeleteCityMessage(context.Background(), &message)
+			if err != nil {
+				log.Fatalf("Error when calling SendMessage: %s", err)
+			}
+			log.Printf("Response from server: %s", response.Planeta)
 		}
-
-		message := chat.Message{
-			Planeta: decision,
-		}
-		response, err := c.SendMessage(context.Background(), &message)
-		if err != nil {
-			log.Fatalf("Error when calling SendMessage: %s", err)
-		}
-		log.Printf("Response from server: %s", response.Planeta)
 
 		contador ++
 
-		if (contador == 2) {
+		if (contador == 4) {
 			break
 		}
 

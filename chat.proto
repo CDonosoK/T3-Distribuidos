@@ -10,5 +10,8 @@ message Message {
 }
 
 service Chat {
-    rpc SendMessage(Message) returns (Message) {}
+    rpc AddCityMessage(Message) returns (Message) {}
+    rpc UpdateNameMessage(Message) returns (Message) {}
+    rpc UpdateNumberMessage(Message) returns (Message) {}
+    rpc DeleteCityMessage(Message) returns (Message) {}
 }
