@@ -17,7 +17,7 @@ type informacion struct {
 	X int32
 	Y int32
 	z int32
-	ultimoServidor string
+	ultimoServidor int32
 }
 
 var listaPlanetas []informacion
@@ -157,8 +157,18 @@ func main() {
 				if err != nil {
 					log.Fatalf("Error when calling SendMessage: %s", err)
 				}
-				log.Printf("Response from server: %d", response.Server)
-				
+				//Se asumirá que nunca se agregarán ciudades duplicadas
+				nuevoPlaneta := informacion{
+					Planeta: message.Planeta,
+					Ciudad: message.Ciudad,
+					Valor: message.Valor,
+					X: 0,
+					Y: 0,
+					z: 0,
+				}
+				listaPlanetas = append(listaPlanetas, nuevoPlaneta)
+				fmt.Println(listaPlanetas)
+				log.Printf("Conectado con el servidor: %d", response.Servidor)
 
 			// Código para actualizar el nombre de la ciudad
 			case "2":
@@ -167,7 +177,7 @@ func main() {
 				if err != nil {
 					log.Fatalf("Error when calling SendMessage: %s", err)
 				}
-				log.Printf("Response from server: %d", response.Server)
+				log.Printf("Response from server: %d", response.Servidor)
 
 			// Código para actualizar el valor de la ciudad
 			case "3":
@@ -176,7 +186,7 @@ func main() {
 				if err != nil {
 					log.Fatalf("Error when calling SendMessage: %s", err)
 				}
-				log.Printf("Response from server: %d", response.Server)
+				log.Printf("Response from server: %d", response.Servidor)
 
 			// Código para eliminar la ciudad
 			case "4":
@@ -185,7 +195,7 @@ func main() {
 				if err != nil {
 					log.Fatalf("Error when calling SendMessage: %s", err)
 				}
-				log.Printf("Response from server: %d", response.Server)
+				log.Printf("Response from server: %d", response.Servidor)
 			}
 
 		contador ++
