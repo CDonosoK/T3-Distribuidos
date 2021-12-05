@@ -1,15 +1,26 @@
 package main
 
-import(
-	"log"
+import (
 	"fmt"
+	"log"
 
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
 	"github.com/CDonosoK/T3-Distribuidos/chat"
-
 )
+
+type informacion struct {
+	Planeta string
+	Ciudad string
+	Valor string
+	X int32
+	Y int32
+	z int32
+	ultimoServidor string
+}
+
+var listaPlanetas []informacion
 
 func AddCity() chat.Message{
 	var nombrePlaneta string
@@ -23,7 +34,7 @@ func AddCity() chat.Message{
 	var nuevoValor string
 	fmt.Println("Ingrese el valor: ")
 	fmt.Scan(&nuevoValor)
-	if (nuevoValor == "") {
+	if (nuevoValor == " ") {
 		nuevoValor = "0"
 	}
 
@@ -146,7 +157,7 @@ func main() {
 				if err != nil {
 					log.Fatalf("Error when calling SendMessage: %s", err)
 				}
-				log.Printf("Response from server: %s", response.Planeta)
+				log.Printf("Response from server: %d", response.Server)
 
 			// Código para actualizar el nombre de la ciudad
 			case "2":
@@ -155,7 +166,7 @@ func main() {
 				if err != nil {
 					log.Fatalf("Error when calling SendMessage: %s", err)
 				}
-				log.Printf("Response from server: %s", response.Planeta)
+				log.Printf("Response from server: %d", response.Server)
 
 			// Código para actualizar el valor de la ciudad
 			case "3":
@@ -164,7 +175,7 @@ func main() {
 				if err != nil {
 					log.Fatalf("Error when calling SendMessage: %s", err)
 				}
-				log.Printf("Response from server: %s", response.Planeta)
+				log.Printf("Response from server: %d", response.Server)
 
 			// Código para eliminar la ciudad
 			case "4":
@@ -173,7 +184,7 @@ func main() {
 				if err != nil {
 					log.Fatalf("Error when calling SendMessage: %s", err)
 				}
-				log.Printf("Response from server: %s", response.Planeta)
+				log.Printf("Response from server: %d", response.Server)
 			}
 
 		contador ++
