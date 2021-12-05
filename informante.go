@@ -139,35 +139,42 @@ func main() {
 		message := chat.Message{}
 
 		switch decision {
-		case "1":
-			message = AddCity()
-			response, err := c.AddCityMessage(context.Background(), &message)
-			if err != nil {
-				log.Fatalf("Error when calling SendMessage: %s", err)
+			// Código para agregar la ciudad
+			case "1":
+				message = AddCity()
+				response, err := c.AddCityMessage(context.Background(), &message)
+				if err != nil {
+					log.Fatalf("Error when calling SendMessage: %s", err)
+				}
+				log.Printf("Response from server: %s", response.Planeta)
+
+			// Código para actualizar el nombre de la ciudad
+			case "2":
+				message = UpdateName()
+				response, err := c.UpdateNameMessage(context.Background(), &message)
+				if err != nil {
+					log.Fatalf("Error when calling SendMessage: %s", err)
+				}
+				log.Printf("Response from server: %s", response.Planeta)
+
+			// Código para actualizar el valor de la ciudad
+			case "3":
+				message = UpdateNumber()
+				response, err := c.UpdateNumberMessage(context.Background(), &message)
+				if err != nil {
+					log.Fatalf("Error when calling SendMessage: %s", err)
+				}
+				log.Printf("Response from server: %s", response.Planeta)
+
+			// Código para eliminar la ciudad
+			case "4":
+				message = DeleteCity()
+				response, err := c.DeleteCityMessage(context.Background(), &message)
+				if err != nil {
+					log.Fatalf("Error when calling SendMessage: %s", err)
+				}
+				log.Printf("Response from server: %s", response.Planeta)
 			}
-			log.Printf("Response from server: %s", response.Planeta)
-		case "2":
-			message = UpdateName()
-			response, err := c.UpdateNameMessage(context.Background(), &message)
-			if err != nil {
-				log.Fatalf("Error when calling SendMessage: %s", err)
-			}
-			log.Printf("Response from server: %s", response.Planeta)
-		case "3":
-			message = UpdateNumber()
-			response, err := c.UpdateNumberMessage(context.Background(), &message)
-			if err != nil {
-				log.Fatalf("Error when calling SendMessage: %s", err)
-			}
-			log.Printf("Response from server: %s", response.Planeta)
-		case "4":
-			message = DeleteCity()
-			response, err := c.DeleteCityMessage(context.Background(), &message)
-			if err != nil {
-				log.Fatalf("Error when calling SendMessage: %s", err)
-			}
-			log.Printf("Response from server: %s", response.Planeta)
-		}
 
 		contador ++
 
