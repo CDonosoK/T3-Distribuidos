@@ -188,7 +188,7 @@ func main() {
 				//Se busca el planeta y la ciudad y se actualiza el reloj de vectores
 				for i := 0; i < len(listaPlanetas); i++ {
 					if listaPlanetas[i].Planeta == message.Planeta && listaPlanetas[i].Ciudad == message.Ciudad {
-						listaPlanetas[i].Ciudad = message.Valor
+						listaPlanetas[i].Valor = message.Valor
 						if response.Servidor == 0 {
 							listaPlanetas[i].X += 1
 						}
@@ -226,7 +226,7 @@ func main() {
 			}
 			
 			//Si se quiere ver la información guardada en memoria, descomentar la siguiente línea
-			//fmt.Println(listaPlanetas)
+			fmt.Println(listaPlanetas)
 
 			if salir {
 				break

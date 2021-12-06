@@ -1,7 +1,43 @@
 # T3-Distribuidos
+## Star-Wars
+
+## INTEGRANTES:
+- Nazareth Díaz - 201873560-4
+- Jael Toledo - 201873543-4
+- Clemente Donoso - 201873546-9
+
+Las máquinas virtuales están asociadas de la siguiente manera:
+
+|Máquina | Proceso |
+| dist69 | ... |
+| dist70 | ... |
+| dist71 | ... |
+| dist72 | ... |
+
+Es de suma importancia que al ejecutar las máquinas se deban realizar en el siguiente órden
+
+|Máquina | Lugar |
+| dist69 | ... |
+| dist70 | ... |
+| dist71 | ... |
+| dist72 | ... |
+
+En cada máquina aparecerán las instrucciones sobre como continuar, para que así el proceso sea lo más legible y entendible posible.
+
+### INSTRUCCIONES:
+- Se debe ejecutar en la máquina dist69 el comando: ``` X ```
+- Se debe ejecutar en la máquina dist70 el comando: ``` X ``` 
+- Se debe ejecutar en la máquina dist71 el comando: ``` X ``` 
+- Se debe ejecutar en la máquina dist72 el comando: ``` X ``` 
+
+## CONSIDERACIONES
+- Se asume que tanto los informantes, como leia son inteligentes y seguirán las instrucciones que aparecen en pantalla.
+- Se asumirá que los informantes al agregar una ciudad no agregarán ciudades respetidas.
+- Al momento de actualizar un valor (ya sea ciudad o valor), se asume que se indicará un lugar existente.
+- Cuando se cree una ciudad, el reloj de vectores se instanciará en [0,0,0]
+
+RECORDAR BORRAR LO SIGUIENTE:
 
 - Para actualizar el archivo proto se debe ejecutar el siguiente comando: protoc --go_out=plugins=grpc:chat chat.proto
 - Ejecutar el broker con el comando: go run brokerMosEisley.go
 - Ejecutar los informantes con el comando: go run informante.go
-
-
