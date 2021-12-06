@@ -9,18 +9,20 @@
 Las máquinas virtuales están asociadas de la siguiente manera:
 
 |Máquina | Proceso |
-| dist69 | ... |
-| dist70 | ... |
-| dist71 | ... |
-| dist72 | ... |
+| ----- | ----- |
+| dist69 | X |
+| dist70 | X |
+| dist71 | X |
+| dist72 | X |
 
 Es de suma importancia que al ejecutar las máquinas se deban realizar en el siguiente órden
 
 |Máquina | Lugar |
-| dist69 | ... |
-| dist70 | ... |
-| dist71 | ... |
-| dist72 | ... |
+| ----- | ----- |
+| dist69 | X |
+| dist70 | X |
+| dist71 | X |
+| dist72 | X |
 
 En cada máquina aparecerán las instrucciones sobre como continuar, para que así el proceso sea lo más legible y entendible posible.
 
