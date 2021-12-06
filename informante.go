@@ -45,9 +45,6 @@ func AddCity() chat.Message{
 	}
 
 	return mensaje
-	/*
-	Conexión con los servidores fulcrum para agregar la ciudad
-	*/
 
 }
 
@@ -72,11 +69,6 @@ func UpdateName() chat.Message{
 
 	return mensaje
 
-	/*
-	Conexión con los servidores fulcrum para actualizar el nombre
-	*/
-
-
 }
 
 func UpdateNumber() chat.Message{
@@ -99,10 +91,6 @@ func UpdateNumber() chat.Message{
 	}
 
 	return mensaje
-	/*
-	Conexión con los servidores fulcrum para actualizar el valor
-	*/
-
 
 }
 
@@ -122,10 +110,6 @@ func DeleteCity() chat.Message{
 	}
 
 	return mensaje
-	/*
-	Conexión con los servidores fulcrum para eliminar la ciudad
-	*/
-
 
 }
 
