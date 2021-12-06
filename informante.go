@@ -139,12 +139,12 @@ func main() {
 	defer conn.Close()
 
 	c := chat.NewChatClient(conn)
-	contador := 0
+	salir := false
 
 	for {
 		var decision string
 		fmt.Println("--- Menu Principal - Informantes ---")
-		fmt.Println("¿Qué comando desea utilizar? \n [1] AddCity \n [2] UpdateName \n [3] UpdateNumber \n [4] DeleteCity")
+		fmt.Println("¿Qué comando desea utilizar? \n [1] AddCity \n [2] UpdateName \n [3] UpdateNumber \n [4] DeleteCity \n [5] Salir")
 		fmt.Scan(&decision)
 
 		message := chat.Message{}
@@ -167,7 +167,6 @@ func main() {
 					z: 0,
 				}
 				listaPlanetas = append(listaPlanetas, nuevoPlaneta)
-				fmt.Println(listaPlanetas)
 				log.Printf("Conectado con el servidor: %d", response.Servidor)
 
 			// Código para actualizar el nombre de la ciudad
@@ -177,7 +176,22 @@ func main() {
 				if err != nil {
 					log.Fatalf("Error when calling SendMessage: %s", err)
 				}
-				log.Printf("Response from server: %d", response.Servidor)
+
+				//Se busca el planeta y la ciudad y se actualiza el reloj de vectores
+				for i := 0; i < len(listaPlanetas); i++ {
+					if listaPlanetas[i].Planeta == message.Planeta && listaPlanetas[i].Ciudad == message.Ciudad {
+						listaPlanetas[i].Ciudad = message.Valor
+						if response.Servidor == 0 {
+							listaPlanetas[i].X += 1
+						}
+						if response.Servidor == 1 {
+							listaPlanetas[i].Y += 1
+						}
+						if response.Servidor == 2 {
+							listaPlanetas[i].z += 1
+						}
+					}
+				}
 
 			// Código para actualizar el valor de la ciudad
 			case "3":
@@ -187,6 +201,21 @@ func main() {
 					log.Fatalf("Error when calling SendMessage: %s", err)
 				}
 				log.Printf("Response from server: %d", response.Servidor)
+				//Se busca el planeta y la ciudad y se actualiza el reloj de vectores
+				for i := 0; i < len(listaPlanetas); i++ {
+					if listaPlanetas[i].Planeta == message.Planeta && listaPlanetas[i].Ciudad == message.Ciudad {
+						listaPlanetas[i].Ciudad = message.Valor
+						if response.Servidor == 0 {
+							listaPlanetas[i].X += 1
+						}
+						if response.Servidor == 1 {
+							listaPlanetas[i].Y += 1
+						}
+						if response.Servidor == 2 {
+							listaPlanetas[i].z += 1
+						}
+					}
+				}
 
 			// Código para eliminar la ciudad
 			case "4":
@@ -196,13 +225,28 @@ func main() {
 					log.Fatalf("Error when calling SendMessage: %s", err)
 				}
 				log.Printf("Response from server: %d", response.Servidor)
+				//Se busca el planeta y la ciudad y se guarda la posición dónde se encuentra
+				var i = 0
+				for i = 0; i < len(listaPlanetas); i++ {
+					if listaPlanetas[i].Planeta == message.Planeta && listaPlanetas[i].Ciudad == message.Ciudad {
+						break
+					}
+				}
+				//Se elimina el registro de la memoria
+				listaPlanetas[i] = listaPlanetas[len(listaPlanetas)-1]
+				listaPlanetas = listaPlanetas[:len(listaPlanetas)-1]
+
+			// Código para salir del programa
+			case "5":
+				salir = true
 			}
+			
+			//Si se quiere ver la información guardada en memoria, descomentar la siguiente línea
+			//fmt.Println(listaPlanetas)
 
-		contador ++
-
-		if (contador == 4) {
-			break
-		}
+			if salir {
+				break
+			}
 
 	}
 
