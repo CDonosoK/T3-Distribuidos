@@ -226,7 +226,7 @@ func main() {
 			}
 			
 			//Si se quiere ver la información guardada en memoria, descomentar la siguiente línea
-			fmt.Println(listaPlanetas)
+			//fmt.Println(listaPlanetas)
 
 			if salir {
 				break
