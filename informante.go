@@ -137,6 +137,7 @@ func main() {
 			// Código para agregar la ciudad
 			case "1":
 				message = AddCity()
+				message.Tipo = "0"
 				response, err := c.AddCityMessage(context.Background(), &message)
 				if err != nil {
 					log.Fatalf("Error when calling SendMessage: %s", err)
@@ -156,6 +157,7 @@ func main() {
 			// Código para actualizar el nombre de la ciudad
 			case "2":
 				message = UpdateName()
+				message.Tipo = "1"
 				response, err := c.UpdateNameMessage(context.Background(), &message)
 				if err != nil {
 					log.Fatalf("Error when calling SendMessage: %s", err)
@@ -180,6 +182,7 @@ func main() {
 			// Código para actualizar el valor de la ciudad
 			case "3":
 				message = UpdateNumber()
+				message.Tipo = "2"
 				response, err := c.UpdateNumberMessage(context.Background(), &message)
 				if err != nil {
 					log.Fatalf("Error when calling SendMessage: %s", err)
@@ -204,6 +207,7 @@ func main() {
 			// Código para eliminar la ciudad
 			case "4":
 				message = DeleteCity()
+				message.Tipo = "3"
 				response, err := c.DeleteCityMessage(context.Background(), &message)
 				if err != nil {
 					log.Fatalf("Error when calling SendMessage: %s", err)

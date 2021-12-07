@@ -8,7 +8,9 @@ message Message {
     string ciudad = 2;
     string valor = 3;
 
-    int32 servidor = 4;
+    string tipo = 4;
+
+    int32 servidor = 5;
 }
 
 service Chat {
