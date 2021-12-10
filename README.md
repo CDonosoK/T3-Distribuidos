@@ -32,6 +32,13 @@ En cada máquina aparecerán las instrucciones sobre como continuar, para que as
 - Se debe ejecutar en la máquina dist71 el comando: ``` X ``` 
 - Se debe ejecutar en la máquina dist72 el comando: ``` X ``` 
 
+Los comandos que se envían desde el informante pueden ser de 4 tipos:
+- Tipo "0": Se crea un planeta, con su ciudad y el valor asociado.
+- Tipo "1": SE actualiza el nombra de la ciudad.
+- Tipo "2": Se actualiza el valor asociado.
+- Tipo "3": Se elimina el planeta.
+Esto servirá para el log en los servidores fulcrum y anotar que está ocurriendo.
+
 ## CONSIDERACIONES
 - Se asume que tanto los informantes, como leia son inteligentes y seguirán las instrucciones que aparecen en pantalla.
 - Se asumirá que los informantes al agregar una ciudad no agregarán ciudades respetidas.
