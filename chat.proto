@@ -11,6 +11,10 @@ message Message {
     string tipo = 4;
 
     int32 servidor = 5;
+
+    string X = 6;
+    string Y = 7;  
+    string Z = 8;
 }
 
 service Chat {

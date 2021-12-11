@@ -114,6 +114,8 @@ func DeleteCity() chat.Message{
 }
 
 func main() {
+
+	//Conexión informantes con el servidor
 	var conn *grpc.ClientConn
 	conn, err := grpc.Dial(":9000", grpc.WithInsecure())
 	if err != nil {
@@ -123,6 +125,16 @@ func main() {
 	defer conn.Close()
 
 	c := chat.NewChatClient(conn)
+
+	//Conexión informantes con el fulcrum 1
+	var conn1 *grpc.ClientConn
+	conn1, err1 := grpc.Dial(":9002", grpc.WithInsecure())
+	if err1 != nil {
+		log.Fatalf("Could not connect: %s", err1)
+	}
+	defer conn.Close()
+	c1 := chat.NewChatClient(conn1)
+
 	salir := false
 
 	for {
@@ -152,6 +164,23 @@ func main() {
 					z: 0,
 				}
 				listaPlanetas = append(listaPlanetas, nuevoPlaneta)
+				//Conexión con los servidores Fulcrum
+				if (response.Servidor == 0) {
+					//Se envia el mensaje al servidor Fulcrum 1
+					responsef1, errf1 := c1.AddCityMessage(context.Background(), &message)
+					if errf1 != nil {
+						log.Fatalf("Error when calling SendMessage: %s", errf1)
+					}
+					log.Printf("Conectado con el servidor: %d", responsef1.Servidor)
+
+				}
+				if (response.Servidor == 1) {
+					//Se envia el mensaje al servidor Fulcrum 2
+				}
+				if (response.Servidor == 2) {
+					//Se envia el mensaje al servidor Fulcrum 3
+				}
+				
 				log.Printf("Conectado con el servidor: %d", response.Servidor)
 
 			// Código para actualizar el nombre de la ciudad
@@ -179,6 +208,8 @@ func main() {
 					}
 				}
 
+				log.Printf("Conectado con el servidor: %d", response.Servidor)
+
 			// Código para actualizar el valor de la ciudad
 			case "3":
 				message = UpdateNumber()
@@ -203,6 +234,8 @@ func main() {
 						}
 					}
 				}
+				//Conexión con los servidores Fulcrum
+				log.Printf("Conectado con el servidor: %d", response.Servidor)
 
 			// Código para eliminar la ciudad
 			case "4":
@@ -223,6 +256,9 @@ func main() {
 				//Se elimina el registro de la memoria
 				listaPlanetas[i] = listaPlanetas[len(listaPlanetas)-1]
 				listaPlanetas = listaPlanetas[:len(listaPlanetas)-1]
+
+				//Conexión con los servidores Fulcrum
+				log.Printf("Conectado con el servidor: %d", response.Servidor)
 
 			// Código para salir del programa
 			case "5":
