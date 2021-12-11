@@ -146,7 +146,7 @@ func main() {
 
 	//Conexión informantes con el fulcrum 3
 	var conn3 *grpc.ClientConn
-	conn3, err3 := grpc.Dial(":9002", grpc.WithInsecure())
+	conn3, err3 := grpc.Dial(":9004", grpc.WithInsecure())
 	if err3 != nil {
 		log.Fatalf("Could not connect: %s", err3)
 	}
