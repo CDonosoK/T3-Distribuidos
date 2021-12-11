@@ -135,6 +135,24 @@ func main() {
 	defer conn.Close()
 	c1 := chat.NewChatClient(conn1)
 
+	//Conexión informantes con el fulcrum 2
+	var conn2 *grpc.ClientConn
+	conn2, err2 := grpc.Dial(":9003", grpc.WithInsecure())
+	if err2 != nil {
+		log.Fatalf("Could not connect: %s", err2)
+	}
+	defer conn.Close()
+	c2 := chat.NewChatClient(conn2)
+
+	//Conexión informantes con el fulcrum 3
+	var conn3 *grpc.ClientConn
+	conn3, err3 := grpc.Dial(":9002", grpc.WithInsecure())
+	if err3 != nil {
+		log.Fatalf("Could not connect: %s", err3)
+	}
+	defer conn.Close()
+	c3 := chat.NewChatClient(conn3)
+
 	salir := false
 
 	for {
@@ -176,9 +194,19 @@ func main() {
 				}
 				if (response.Servidor == 1) {
 					//Se envia el mensaje al servidor Fulcrum 2
+					responsef2, errf2 := c2.AddCityMessage(context.Background(), &message)
+					if errf2 != nil {
+						log.Fatalf("Error when calling SendMessage: %s", errf2)
+					}
+					log.Printf("Conectado con el servidor: %d", responsef2.Servidor)
 				}
 				if (response.Servidor == 2) {
 					//Se envia el mensaje al servidor Fulcrum 3
+					responsef3, errf3 := c3.AddCityMessage(context.Background(), &message)
+					if errf3 != nil {
+						log.Fatalf("Error when calling SendMessage: %s", errf3)
+					}
+					log.Printf("Conectado con el servidor: %d", responsef3.Servidor)
 				}
 				
 				log.Printf("Conectado con el servidor: %d", response.Servidor)
