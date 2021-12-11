@@ -11,6 +11,8 @@ type Server struct {
 
 }
 
+
+
 func (s *Server) AddCityMessage(ctx context.Context, message *Message) (*Message, error) {
 	serverElegido := int32(rand.Intn(3))	
 

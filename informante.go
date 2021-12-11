@@ -167,7 +167,7 @@ func main() {
 				//Conexión con los servidores Fulcrum
 				if (response.Servidor == 0) {
 					//Se envia el mensaje al servidor Fulcrum 1
-					responsef1, errf1 := c1.AddCityMessage(context.Background(), &message)
+					responsef1, errf1 := c1.AddCityF(context.Background(), &message)
 					if errf1 != nil {
 						log.Fatalf("Error when calling SendMessage: %s", errf1)
 					}
