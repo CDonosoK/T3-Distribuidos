@@ -44,17 +44,30 @@ func (s *Server) AddCityF(ctx context.Context, message *Message) (*Message, erro
 	log.Printf("Planeta: %s", planeta)
 
 	// Se crean los archivos / registros
-	if _,err := os.Stat(planeta); os.IsNotExist(err) {
-		directorio1 := "./Logs/" + planeta + ".txt"
-		directorio2 := "./Registros Planetarios/" + planeta + ".txt"
-		os.Create(directorio1)
-		os.Create(directorio2)
+	directorio1 := "./Logs/" + planeta + ".txt"
+	directorio2 := "./Registros Planetarios/" + planeta + ".txt"
 
-		//Escribir en los archivos
+	//SE ESCRIBE EN EL LOGS
+	logMessage := "AddCity " + message.Planeta + " " + message.Ciudad + " " + message.Valor + "\n"
+	f, err := os.OpenFile(directorio1, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Println(err)
+	}
+	defer f.Close()
+	if _, err := f.WriteString(logMessage); err != nil {
+		log.Println(err)
+	}
 
-	}else{
-		//Escribir en los archivos
-		log.Printf("El archivo ya existe")
+	//SE ESCRIBE EN EL REGISTRO
+	//ESTO SE DEBERÍA MODIFICAR -> SE RECORRE EL STRUCT O LA LISTA
+	registroMessage := message.Planeta + " " + message.Ciudad + " " + message.Valor + "\n"
+	f1, err1 := os.OpenFile(directorio2, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err1 != nil {
+		log.Println(err1)
+	}
+	defer f1.Close()
+	if _, err := f1.WriteString(registroMessage); err != nil {
+		log.Println(err)
 	}
 
 	// Actualizar el reloj

@@ -185,6 +185,7 @@ func main() {
 				//Conexión con los servidores Fulcrum
 
 				//CAMBIAR ESTO
+				response.Servidor = 0
 				if (response.Servidor == 0) {
 					//Se envia el mensaje al servidor Fulcrum 1
 					responsef1, errf1 := c1.AddCityF(context.Background(), &message)
