@@ -173,7 +173,7 @@ func main() {
 		message := chat.Message{}
 
 		switch decision {
-			// Código para agregar la ciudad
+			// CÓDIGO PARA AGREGAR CIUDAD
 			case "1":
 				message = AddCity()
 				message.Tipo = "0"
@@ -181,7 +181,12 @@ func main() {
 				if err != nil {
 					log.Fatalf("Error when calling SendMessage: %s", err)
 				}
-				//Se asumirá que nunca se agregarán ciudades duplicadas
+				//CONSISTENCIA READ YOUR WRITES
+				if (message.Planeta == response.Planeta && message.Ciudad == response.Ciudad && message.Valor == response.Valor) {
+					log.Println("Existe consistencia Read Your Writes")
+				}
+
+				// SE ASUME QUE NO SE AGREGARÁN CIUDADES DUPLICADAS
 				nuevoPlaneta := informacion{
 					Planeta: message.Planeta,
 					Ciudad: message.Ciudad,
@@ -199,12 +204,12 @@ func main() {
 					reloj.Z += 1
 				}
 				listaPlanetas = append(listaPlanetas, nuevoPlaneta)
-				//Conexión con los servidores Fulcrum
+				//CONEXIÓN CON LOS SERVIDORES FULCRUM
 
 				//BORRAR ESA LÍNEA
 				response.Servidor = 0
 				if (response.Servidor == 0) {
-					//Se envia el mensaje al servidor Fulcrum 1
+					// SE ENVÍA EL MENSAJE A FULCRUM 1
 					responsef1, errf1 := c1.AddCityF(context.Background(), &message)
 					if errf1 != nil {
 						log.Fatalf("Error when calling SendMessage: %s", errf1)
@@ -213,7 +218,7 @@ func main() {
 
 				}
 				if (response.Servidor == 1) {
-					//Se envia el mensaje al servidor Fulcrum 2
+					// SE ENVÍA EL MENSAJE A FULCRUM 2
 					responsef2, errf2 := c2.AddCityF(context.Background(), &message)
 					if errf2 != nil {
 						log.Fatalf("Error when calling SendMessage: %s", errf2)
@@ -221,17 +226,15 @@ func main() {
 					log.Printf("Conectado con el servidor: %d", responsef2.Servidor)
 				}
 				if (response.Servidor == 2) {
-					//Se envia el mensaje al servidor Fulcrum 3
+					// SE ENVÍA EL MENSAJE A FULCRUM 3
 					responsef3, errf3 := c3.AddCityF(context.Background(), &message)
 					if errf3 != nil {
 						log.Fatalf("Error when calling SendMessage: %s", errf3)
 					}
 					log.Printf("Conectado con el servidor: %d", responsef3.Servidor)
 				}
-				
-				log.Printf("Conectado con el servidor: %d", response.Servidor)
 
-			// Código para actualizar el nombre de la ciudad
+			// CÓDIGO PARA ACTUALIZAR NOMBRE DE LA CIUDAD
 			case "2":
 				message = UpdateName()
 				message.Tipo = "1"
@@ -240,7 +243,12 @@ func main() {
 					log.Fatalf("Error when calling SendMessage: %s", err)
 				}
 
-				//Se busca el planeta y la ciudad y se actualiza el reloj de vectores
+				//CONSISTENCIA READ YOUR WRITES
+				if (message.Planeta == response.Planeta && message.Ciudad == response.Ciudad && message.Valor == response.Valor) {
+					log.Println("Existe consistencia Read Your Writes")
+				}
+
+				// SE BUSCA EL PLANETA Y LA CIUDAD PARA ACTUALIZAR ESE DATO
 				for i := 0; i < len(listaPlanetas); i++ {
 					if listaPlanetas[i].Planeta == message.Planeta && listaPlanetas[i].Ciudad == message.Ciudad {
 						listaPlanetas[i].Ciudad = message.Valor
@@ -255,10 +263,36 @@ func main() {
 						}
 					}
 				}
+				// CONEXIÓN CON LOS SERVIDORES FULCRUM
+				//BORRAR ESA LÍNEA
+				response.Servidor = 0
+				if (response.Servidor == 0) {
+					// SE ENVÍA EL MENSAJE A FULCRUM 1
+					responsef1, errf1 := c1.UpdateNameF(context.Background(), &message)
+					if errf1 != nil {
+						log.Fatalf("Error when calling SendMessage: %s", errf1)
+					}
+					log.Printf("Conectado con el servidor: %d", responsef1.Servidor)
 
-				log.Printf("Conectado con el servidor: %d", response.Servidor)
+				}
+				if (response.Servidor == 1) {
+					// SE ENVÍA EL MENSAJE A FULCRUM 2
+					responsef2, errf2 := c2.UpdateNameF(context.Background(), &message)
+					if errf2 != nil {
+						log.Fatalf("Error when calling SendMessage: %s", errf2)
+					}
+					log.Printf("Conectado con el servidor: %d", responsef2.Servidor)
+				}
+				if (response.Servidor == 2) {
+					// SE ENVÍA EL MENSAJE A FULCRUM 3
+					responsef3, errf3 := c3.UpdateNameF(context.Background(), &message)
+					if errf3 != nil {
+						log.Fatalf("Error when calling SendMessage: %s", errf3)
+					}
+					log.Printf("Conectado con el servidor: %d", responsef3.Servidor)
+				}
 
-			// Código para actualizar el valor de la ciudad
+			// CÓDIGO PARA ACTUALIZAR NUMERO DE REBELDES
 			case "3":
 				message = UpdateNumber()
 				message.Tipo = "2"
@@ -267,7 +301,13 @@ func main() {
 					log.Fatalf("Error when calling SendMessage: %s", err)
 				}
 				log.Printf("Response from server: %d", response.Servidor)
-				//Se busca el planeta y la ciudad y se actualiza el reloj de vectores
+
+				//CONSISTENCIA READ YOUR WRITES
+				if (message.Planeta == response.Planeta && message.Ciudad == response.Ciudad && message.Valor == response.Valor) {
+					log.Println("Existe consistencia Read Your Writes")
+				}
+				
+				// SE BUSCA EL PLANETA Y LA CIUDAD PARA ACTUALIZAR ESE DATO
 				for i := 0; i < len(listaPlanetas); i++ {
 					if listaPlanetas[i].Planeta == message.Planeta && listaPlanetas[i].Ciudad == message.Ciudad {
 						listaPlanetas[i].Valor = message.Valor
@@ -282,10 +322,37 @@ func main() {
 						}
 					}
 				}
-				//Conexión con los servidores Fulcrum
-				log.Printf("Conectado con el servidor: %d", response.Servidor)
+				// CONEXIÓN CON LOS SERVIDORES FULCRUM
+				//BORRAR ESA LÍNEA
+				response.Servidor = 0
+				if (response.Servidor == 0) {
+					// SE ENVÍA EL MENSAJE A FULCRUM 1
+					responsef1, errf1 := c1.UpdateNumberF(context.Background(), &message)
+					if errf1 != nil {
+						log.Fatalf("Error when calling SendMessage: %s", errf1)
+					}
+					log.Printf("Conectado con el servidor: %d", responsef1.Servidor)
 
-			// Código para eliminar la ciudad
+				}
+				if (response.Servidor == 1) {
+					// SE ENVÍA EL MENSAJE A FULCRUM 2
+					responsef2, errf2 := c2.UpdateNumberF(context.Background(), &message)
+					if errf2 != nil {
+						log.Fatalf("Error when calling SendMessage: %s", errf2)
+					}
+					log.Printf("Conectado con el servidor: %d", responsef2.Servidor)
+				}
+				if (response.Servidor == 2) {
+					// SE ENVÍA EL MENSAJE A FULCRUM 3
+					responsef3, errf3 := c3.UpdateNumberF(context.Background(), &message)
+					if errf3 != nil {
+						log.Fatalf("Error when calling SendMessage: %s", errf3)
+					}
+					log.Printf("Conectado con el servidor: %d", responsef3.Servidor)
+				}
+
+
+			// CÓDIGO PARA ELIMINAR LA CIUDAD
 			case "4":
 				message = DeleteCity()
 				message.Tipo = "3"
@@ -294,21 +361,54 @@ func main() {
 					log.Fatalf("Error when calling SendMessage: %s", err)
 				}
 				log.Printf("Response from server: %d", response.Servidor)
-				//Se busca el planeta y la ciudad y se guarda la posición dónde se encuentra
+
+				//CONSISTENCIA READ YOUR WRITES
+				if (message.Planeta == response.Planeta && message.Ciudad == response.Ciudad) {
+					log.Println("Existe consistencia Read Your Writes")
+				}
+
+				// SE BUSCA EL PLANETA Y LA CIUDAD PARA ACTUALIZAR ESE DATO
 				var i = 0
 				for i = 0; i < len(listaPlanetas); i++ {
 					if listaPlanetas[i].Planeta == message.Planeta && listaPlanetas[i].Ciudad == message.Ciudad {
 						break
 					}
 				}
-				//Se elimina el registro de la memoria
+
+				// SE ELIMINA EL REGISTRO DE LA MEMORIA
 				listaPlanetas[i] = listaPlanetas[len(listaPlanetas)-1]
 				listaPlanetas = listaPlanetas[:len(listaPlanetas)-1]
 
-				//Conexión con los servidores Fulcrum
-				log.Printf("Conectado con el servidor: %d", response.Servidor)
+				// CONEXIÓN CON LOS SERVIDORES FULCRUM
+				//BORRAR ESA LÍNEA
+				response.Servidor = 0
+				if (response.Servidor == 0) {
+					// SE ENVÍA EL MENSAJE A FULCRUM 1
+					responsef1, errf1 := c1.DeleteCityF(context.Background(), &message)
+					if errf1 != nil {
+						log.Fatalf("Error when calling SendMessage: %s", errf1)
+					}
+					log.Printf("Conectado con el servidor: %d", responsef1.Servidor)
 
-			// Código para salir del programa
+				}
+				if (response.Servidor == 1) {
+					// SE ENVÍA EL MENSAJE A FULCRUM 2
+					responsef2, errf2 := c2.DeleteCityF(context.Background(), &message)
+					if errf2 != nil {
+						log.Fatalf("Error when calling SendMessage: %s", errf2)
+					}
+					log.Printf("Conectado con el servidor: %d", responsef2.Servidor)
+				}
+				if (response.Servidor == 2) {
+					// SE ENVÍA EL MENSAJE A FULCRUM 3
+					responsef3, errf3 := c3.DeleteCityF(context.Background(), &message)
+					if errf3 != nil {
+						log.Fatalf("Error when calling SendMessage: %s", errf3)
+					}
+					log.Printf("Conectado con el servidor: %d", responsef3.Servidor)
+				}
+
+			// SE SALE DE LA APLICACIÓN
 			case "5":
 				salir = true
 			}

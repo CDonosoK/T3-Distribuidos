@@ -7,7 +7,6 @@ import (
 	"os"
 
 	"golang.org/x/net/context"
-
 )
 
 type Server struct {
@@ -34,7 +33,7 @@ var reloj = relojPlaneta{
 }
 
 func (s *Server) AddCityF(ctx context.Context, message *Message) (*Message, error) {
-	// Se obtiene la información
+	// SE OBTIENE LA INFORMACIÓN
 	planeta := message.Planeta
 
 	nuevoPlaneta := infoPlaneta{
@@ -43,6 +42,8 @@ func (s *Server) AddCityF(ctx context.Context, message *Message) (*Message, erro
 		valor: message.Valor,
 	}
 
+
+	// SE ACTUALIZA EL RELOJ
 	if message.Servidor == 0 {
 		reloj.X += 1
 	}
@@ -59,11 +60,11 @@ func (s *Server) AddCityF(ctx context.Context, message *Message) (*Message, erro
 
 	log.Printf("Planeta: %s", planeta)
 
-	// Se crean los archivos / registros
+	// SE CREAN LAS RUTAS CORRESPONDIENTES
 	directorio1 := "./Logs/" + planeta + ".txt"
 	directorio2 := "./Registros Planetarios/" + planeta + ".txt"
 
-	//SE ESCRIBE EN EL LOGS - IGUAL PARA TODAS LAS FUNCIONES
+	// SE ESCRIBE EN EL LOGS - IGUAL PARA TODAS LAS FUNCIONES
 	logMessage := "AddCity " + message.Planeta + " " + message.Ciudad + " " + message.Valor + "\n"
 	f, err := os.OpenFile(directorio1, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
@@ -74,7 +75,7 @@ func (s *Server) AddCityF(ctx context.Context, message *Message) (*Message, erro
 		log.Println(err)
 	}
 
-	//SE ESCRIBE EN EL REGISTRO
+	// SE ESCRIBE EN EL REGISTRO
 	registroMessage := message.Planeta + " " + message.Ciudad + " " + message.Valor + "\n"
 	f1, err1 := os.OpenFile(directorio2, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err1 != nil {
@@ -85,8 +86,6 @@ func (s *Server) AddCityF(ctx context.Context, message *Message) (*Message, erro
 		log.Println(err)
 	}
 
-	// Actualizar el reloj
-
 	// Actualizar el return
 
 	return &Message{Planeta: "RECIBIDO"}, nil
@@ -96,7 +95,7 @@ func (s *Server) AddCityMessage(ctx context.Context, message *Message) (*Message
 	serverElegido := int32(rand.Intn(3))	
 
 	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad, message.Valor)
-	return &Message{Servidor: serverElegido}, nil
+	return &Message{Planeta: message.Planeta, Ciudad: message.Ciudad, Valor: message.Valor, Servidor: serverElegido}, nil
 }
 
 func (s *Server) UpdateNameF(ctx context.Context, message *Message) (*Message, error) {
@@ -104,7 +103,7 @@ func (s *Server) UpdateNameF(ctx context.Context, message *Message) (*Message, e
 
 
 	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad, message.Valor)
-	return &Message{Servidor: serverElegido}, nil
+	return &Message{Planeta: message.Planeta, Ciudad: message.Ciudad, Valor: message.Valor, Servidor: serverElegido}, nil
 }
 
 func (s *Server) UpdateNameMessage(ctx context.Context, message *Message) (*Message, error) {
@@ -112,7 +111,7 @@ func (s *Server) UpdateNameMessage(ctx context.Context, message *Message) (*Mess
 
 
 	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad, message.Valor)
-	return &Message{Servidor: serverElegido}, nil
+	return &Message{Planeta: message.Planeta, Ciudad: message.Ciudad, Valor: message.Valor, Servidor: serverElegido}, nil
 }
 
 func (s *Server) UpdateNumberF(ctx context.Context, message *Message) (*Message, error) {
@@ -128,7 +127,7 @@ func (s *Server) UpdateNumberMessage(ctx context.Context, message *Message) (*Me
 
 
 	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad, message.Valor)
-	return &Message{Servidor: serverElegido}, nil
+	return &Message{Planeta: message.Planeta, Ciudad: message.Ciudad, Valor: message.Valor, Servidor: serverElegido}, nil
 }
 
 func (s *Server) DeleteCityF(ctx context.Context, message *Message) (*Message, error) {
@@ -144,7 +143,7 @@ func (s *Server) DeleteCityMessage(ctx context.Context, message *Message) (*Mess
 
 
 	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad, message.Valor)
-	return &Message{Servidor: serverElegido}, nil
+	return &Message{Planeta: message.Planeta, Ciudad: message.Ciudad, Servidor: serverElegido}, nil
 }
 
 func (s *Server) ObtenerNumeroRebeldesBroker(ctx context.Context, message *DeLeia) (*ParaLeia, error) {

@@ -35,7 +35,6 @@ message paraLeia{
     int32 Servidor = 5;
 }
 
-
 service Chat {
     rpc AddCityMessage(Message) returns (Message) {}
     rpc UpdateNameMessage(Message) returns (Message) {}
