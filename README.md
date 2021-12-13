@@ -10,34 +10,35 @@ Las máquinas virtuales están asociadas de la siguiente manera:
 
 |Máquina | Proceso |
 | ----- | ----- |
-| dist69 | X |
-| dist70 | X |
-| dist71 | X |
-| dist72 | X |
+| dist69 | brokerMosEisley |
+| dist70 | servidorFulcrum 1, informante 1 |
+| dist71 | servidorFulcrum 2, informante 2 |
+| dist72 | servidorFulcrum 3, leia |
 
 Es de suma importancia que al ejecutar las máquinas se deban realizar en el siguiente órden
 
 |Máquina | Lugar |
 | ----- | ----- |
-| dist69 | X |
-| dist70 | X |
-| dist71 | X |
-| dist72 | X |
+| dist69 | 1 |
+| dist70 | 2 |
+| dist71 | 3 |
+| dist72 | 4 |
 
 En cada máquina aparecerán las instrucciones sobre como continuar, para que así el proceso sea lo más legible y entendible posible.
 
 ### INSTRUCCIONES:
-- Se debe ejecutar en la máquina dist69 el comando: ``` X ```
-- Se debe ejecutar en la máquina dist70 el comando: ``` X ``` 
-- Se debe ejecutar en la máquina dist71 el comando: ``` X ``` 
-- Se debe ejecutar en la máquina dist72 el comando: ``` X ``` 
-
-Los comandos que se envían desde el informante pueden ser de 4 tipos:
-- Tipo "0": Se crea un planeta, con su ciudad y el valor asociado.
-- Tipo "1": SE actualiza el nombra de la ciudad.
-- Tipo "2": Se actualiza el valor asociado.
-- Tipo "3": Se elimina el planeta.
-Esto servirá para el log en los servidores fulcrum y anotar que está ocurriendo.
+Es importante aclarar que las máquinas dis70, dis71 y dis72 deben ejecutar los comandos en distintas terminales.
+- Se debe ejecutar en la máquina dist69 el comando: 
+``` go run brokerMosEisley.go```
+- Se debe ejecutar en la máquina dist70 el comando: 
+``` go run sercidorFulcrum1.go``` 
+``` go run informante.go ``` 
+- Se debe ejecutar en la máquina dist71 el comando: 
+``` go run sercidorFulcrum2.go ```  
+``` go run informante.go``` 
+- Se debe ejecutar en la máquina dist72 el comando: 
+``` go run sercidorFulcrum3.go```  
+``` go run leia.go``` 
 
 ## CONSIDERACIONES
 - Se asume que tanto los informantes, como leia son inteligentes y seguirán las instrucciones que aparecen en pantalla.
