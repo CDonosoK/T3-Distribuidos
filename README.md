@@ -43,7 +43,7 @@ Esto servirá para el log en los servidores fulcrum y anotar que está ocurriend
 - Se asume que tanto los informantes, como leia son inteligentes y seguirán las instrucciones que aparecen en pantalla.
 - Se asumirá que los informantes al agregar una ciudad no agregarán ciudades respetidas.
 - Al momento de actualizar un valor (ya sea ciudad o valor), se asume que se indicará un lugar existente.
-- Cuando se cree una ciudad, el reloj de vectores se instanciará en [0,0,0]
+- El reloj está pensado como un reloj universal, donde cada componente corresponde al Servidor Fulcrum al cual se le están realizando modificaciones.
 
 RECORDAR BORRAR LO SIGUIENTE:
 

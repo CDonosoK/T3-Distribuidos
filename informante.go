@@ -14,10 +14,20 @@ type informacion struct {
 	Planeta string
 	Ciudad string
 	Valor string
+
+	ultimoServidor int32
+}
+
+type vectorReloj struct{
 	X int32
 	Y int32
-	z int32
-	ultimoServidor int32
+	Z int32
+}
+
+var reloj = vectorReloj{
+	X: 0,
+	Y: 0,
+	Z: 0,
 }
 
 var listaPlanetas []informacion
@@ -177,9 +187,17 @@ func main() {
 					Planeta: message.Planeta,
 					Ciudad: message.Ciudad,
 					Valor: message.Valor,
-					X: 0,
-					Y: 0,
-					z: 0,
+
+					ultimoServidor: response.Servidor,
+				}
+				if (response.Servidor == 0) {
+					reloj.X += 1
+				}
+				if (response.Servidor == 1) {
+					reloj.Y += 1
+				}
+				if (response.Servidor == 2) {
+					reloj.Z += 1
 				}
 				listaPlanetas = append(listaPlanetas, nuevoPlaneta)
 				//Conexión con los servidores Fulcrum
@@ -228,13 +246,13 @@ func main() {
 					if listaPlanetas[i].Planeta == message.Planeta && listaPlanetas[i].Ciudad == message.Ciudad {
 						listaPlanetas[i].Ciudad = message.Valor
 						if response.Servidor == 0 {
-							listaPlanetas[i].X += 1
+							reloj.X += 1
 						}
 						if response.Servidor == 1 {
-							listaPlanetas[i].Y += 1
+							reloj.Y += 1
 						}
 						if response.Servidor == 2 {
-							listaPlanetas[i].z += 1
+							reloj.Z += 1
 						}
 					}
 				}
@@ -255,13 +273,13 @@ func main() {
 					if listaPlanetas[i].Planeta == message.Planeta && listaPlanetas[i].Ciudad == message.Ciudad {
 						listaPlanetas[i].Valor = message.Valor
 						if response.Servidor == 0 {
-							listaPlanetas[i].X += 1
+							reloj.X += 1
 						}
 						if response.Servidor == 1 {
-							listaPlanetas[i].Y += 1
+							reloj.Y += 1
 						}
 						if response.Servidor == 2 {
-							listaPlanetas[i].z += 1
+							reloj.Z += 1
 						}
 					}
 				}
