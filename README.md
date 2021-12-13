@@ -26,7 +26,7 @@ Es de suma importancia que al ejecutar las máquinas se deban realizar en el sig
 
 En cada máquina aparecerán las instrucciones sobre como continuar, para que así el proceso sea lo más legible y entendible posible.
 
-### INSTRUCCIONES:
+## INSTRUCCIONES:
 Es importante aclarar que las máquinas dis70, dis71 y dis72 deben ejecutar los comandos en distintas terminales.
 - Se debe ejecutar en la máquina dist69 el comando: 
 
