@@ -29,15 +29,22 @@ En cada máquina aparecerán las instrucciones sobre como continuar, para que as
 ### INSTRUCCIONES:
 Es importante aclarar que las máquinas dis70, dis71 y dis72 deben ejecutar los comandos en distintas terminales.
 - Se debe ejecutar en la máquina dist69 el comando: 
+
 ``` go run brokerMosEisley.go```
 - Se debe ejecutar en la máquina dist70 el comando: 
+
 ``` go run sercidorFulcrum1.go``` 
+
 ``` go run informante.go ``` 
 - Se debe ejecutar en la máquina dist71 el comando: 
+
 ``` go run sercidorFulcrum2.go ```  
+
 ``` go run informante.go``` 
 - Se debe ejecutar en la máquina dist72 el comando: 
+
 ``` go run sercidorFulcrum3.go```  
+
 ``` go run leia.go``` 
 
 ## CONSIDERACIONES
