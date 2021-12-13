@@ -13,7 +13,7 @@ func main(){
 	//Conexión informantes - fulcrum 2
 	lis3, err3 := net.Listen("tcp", ":9003")
 	if err3 != nil {
-		log.Fatalf("Failed to listen on port 8000: %v", err3)
+		log.Fatalf("Failed to listen on port 9003: %v", err3)
 	}
 
 	s3 := chat.Server{}
@@ -23,7 +23,7 @@ func main(){
 	chat.RegisterChatServer(grpcServer3, &s3)
 
 	if err3 := grpcServer3.Serve(lis3); err3 != nil {
-		log.Fatalf("Failed to serve gRPC server over port 8000: %v", err3)
+		log.Fatalf("Failed to serve gRPC server over port 9003: %v", err3)
 
 	}
 
