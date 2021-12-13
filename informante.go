@@ -185,7 +185,7 @@ func main() {
 				//Conexión con los servidores Fulcrum
 				if (response.Servidor == 0) {
 					//Se envia el mensaje al servidor Fulcrum 1
-					responsef1, errf1 := c1.AddCityMessage(context.Background(), &message)
+					responsef1, errf1 := c1.AddCityF(context.Background(), &message)
 					if errf1 != nil {
 						log.Fatalf("Error when calling SendMessage: %s", errf1)
 					}
@@ -194,7 +194,7 @@ func main() {
 				}
 				if (response.Servidor == 1) {
 					//Se envia el mensaje al servidor Fulcrum 2
-					responsef2, errf2 := c2.AddCityMessage(context.Background(), &message)
+					responsef2, errf2 := c2.AddCityF(context.Background(), &message)
 					if errf2 != nil {
 						log.Fatalf("Error when calling SendMessage: %s", errf2)
 					}
@@ -202,7 +202,7 @@ func main() {
 				}
 				if (response.Servidor == 2) {
 					//Se envia el mensaje al servidor Fulcrum 3
-					responsef3, errf3 := c3.AddCityMessage(context.Background(), &message)
+					responsef3, errf3 := c3.AddCityF(context.Background(), &message)
 					if errf3 != nil {
 						log.Fatalf("Error when calling SendMessage: %s", errf3)
 					}

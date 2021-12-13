@@ -142,7 +142,7 @@ var file_chat_proto_rawDesc = []byte{
 	0x72, 0x76, 0x69, 0x64, 0x6f, 0x72, 0x12, 0x0c, 0x0a, 0x01, 0x58, 0x18, 0x06, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x01, 0x58, 0x12, 0x0c, 0x0a, 0x01, 0x59, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52,
 	0x01, 0x59, 0x12, 0x0c, 0x0a, 0x01, 0x5a, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x01, 0x5a,
-	0x32, 0xd9, 0x01, 0x0a, 0x04, 0x43, 0x68, 0x61, 0x74, 0x12, 0x30, 0x0a, 0x0e, 0x41, 0x64, 0x64,
+	0x32, 0x85, 0x02, 0x0a, 0x04, 0x43, 0x68, 0x61, 0x74, 0x12, 0x30, 0x0a, 0x0e, 0x41, 0x64, 0x64,
 	0x43, 0x69, 0x74, 0x79, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x0d, 0x2e, 0x63, 0x68,
 	0x61, 0x74, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x1a, 0x0d, 0x2e, 0x63, 0x68, 0x61,
 	0x74, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x00, 0x12, 0x33, 0x0a, 0x11, 0x55,
@@ -155,8 +155,11 @@ var file_chat_proto_rawDesc = []byte{
 	0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x00, 0x12, 0x33, 0x0a, 0x11, 0x44, 0x65, 0x6c, 0x65, 0x74,
 	0x65, 0x43, 0x69, 0x74, 0x79, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x0d, 0x2e, 0x63,
 	0x68, 0x61, 0x74, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x1a, 0x0d, 0x2e, 0x63, 0x68,
-	0x61, 0x74, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x00, 0x42, 0x09, 0x5a, 0x07,
-	0x2e, 0x2f, 0x3b, 0x63, 0x68, 0x61, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x61, 0x74, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x00, 0x12, 0x2a, 0x0a, 0x08,
+	0x41, 0x64, 0x64, 0x43, 0x69, 0x74, 0x79, 0x46, 0x12, 0x0d, 0x2e, 0x63, 0x68, 0x61, 0x74, 0x2e,
+	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x1a, 0x0d, 0x2e, 0x63, 0x68, 0x61, 0x74, 0x2e, 0x4d,
+	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x00, 0x42, 0x09, 0x5a, 0x07, 0x2e, 0x2f, 0x3b, 0x63,
+	0x68, 0x61, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -180,12 +183,14 @@ var file_chat_proto_depIdxs = []int32{
 	0, // 1: chat.Chat.UpdateNameMessage:input_type -> chat.Message
 	0, // 2: chat.Chat.UpdateNumberMessage:input_type -> chat.Message
 	0, // 3: chat.Chat.DeleteCityMessage:input_type -> chat.Message
-	0, // 4: chat.Chat.AddCityMessage:output_type -> chat.Message
-	0, // 5: chat.Chat.UpdateNameMessage:output_type -> chat.Message
-	0, // 6: chat.Chat.UpdateNumberMessage:output_type -> chat.Message
-	0, // 7: chat.Chat.DeleteCityMessage:output_type -> chat.Message
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
+	0, // 4: chat.Chat.AddCityF:input_type -> chat.Message
+	0, // 5: chat.Chat.AddCityMessage:output_type -> chat.Message
+	0, // 6: chat.Chat.UpdateNameMessage:output_type -> chat.Message
+	0, // 7: chat.Chat.UpdateNumberMessage:output_type -> chat.Message
+	0, // 8: chat.Chat.DeleteCityMessage:output_type -> chat.Message
+	0, // 9: chat.Chat.AddCityF:output_type -> chat.Message
+	5, // [5:10] is the sub-list for method output_type
+	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -246,6 +251,7 @@ type ChatClient interface {
 	UpdateNameMessage(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
 	UpdateNumberMessage(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
 	DeleteCityMessage(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
+	AddCityF(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
 }
 
 type chatClient struct {
@@ -292,12 +298,22 @@ func (c *chatClient) DeleteCityMessage(ctx context.Context, in *Message, opts ..
 	return out, nil
 }
 
+func (c *chatClient) AddCityF(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error) {
+	out := new(Message)
+	err := c.cc.Invoke(ctx, "/chat.Chat/AddCityF", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ChatServer is the server API for Chat service.
 type ChatServer interface {
 	AddCityMessage(context.Context, *Message) (*Message, error)
 	UpdateNameMessage(context.Context, *Message) (*Message, error)
 	UpdateNumberMessage(context.Context, *Message) (*Message, error)
 	DeleteCityMessage(context.Context, *Message) (*Message, error)
+	AddCityF(context.Context, *Message) (*Message, error)
 }
 
 // UnimplementedChatServer can be embedded to have forward compatible implementations.
@@ -315,6 +331,9 @@ func (*UnimplementedChatServer) UpdateNumberMessage(context.Context, *Message) (
 }
 func (*UnimplementedChatServer) DeleteCityMessage(context.Context, *Message) (*Message, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteCityMessage not implemented")
+}
+func (*UnimplementedChatServer) AddCityF(context.Context, *Message) (*Message, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddCityF not implemented")
 }
 
 func RegisterChatServer(s *grpc.Server, srv ChatServer) {
@@ -393,6 +412,24 @@ func _Chat_DeleteCityMessage_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Chat_AddCityF_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Message)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChatServer).AddCityF(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chat.Chat/AddCityF",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChatServer).AddCityF(ctx, req.(*Message))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Chat_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "chat.Chat",
 	HandlerType: (*ChatServer)(nil),
@@ -412,6 +449,10 @@ var _Chat_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteCityMessage",
 			Handler:    _Chat_DeleteCityMessage_Handler,
+		},
+		{
+			MethodName: "AddCityF",
+			Handler:    _Chat_AddCityF_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -22,4 +22,6 @@ service Chat {
     rpc UpdateNameMessage(Message) returns (Message) {}
     rpc UpdateNumberMessage(Message) returns (Message) {}
     rpc DeleteCityMessage(Message) returns (Message) {}
+
+    rpc AddCityF(Message) returns (Message) {}
 }
