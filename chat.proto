@@ -17,6 +17,25 @@ message Message {
     string Z = 8;
 }
 
+message deLeia{
+    int32 X = 1;
+    int32 Y = 2;
+    int32 Z = 3;
+
+    string Planeta = 4;
+    string Ciudad = 5;
+}
+message paraLeia{
+    int32 cantRebeldes = 1;
+
+    int32 X = 2;
+    int32 Y = 3;
+    int32 Z = 4;
+    
+    int32 Servidor = 5;
+}
+
+
 service Chat {
     rpc AddCityMessage(Message) returns (Message) {}
     rpc UpdateNameMessage(Message) returns (Message) {}
@@ -27,4 +46,7 @@ service Chat {
     rpc UpdateNameF(Message) returns (Message) {}
     rpc UpdateNumberF(Message) returns (Message) {}
     rpc DeleteCityF(Message) returns (Message) {}
+
+    rpc ObtenerNumeroRebeldesBroker(deLeia) returns (paraLeia) {}
+    rpc ObtenerNumeroRebeldesFulcrum(deLeia) returns (paraLeia) {}
 }

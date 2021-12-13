@@ -147,3 +147,17 @@ func (s *Server) DeleteCityMessage(ctx context.Context, message *Message) (*Mess
 	return &Message{Servidor: serverElegido}, nil
 }
 
+func (s *Server) ObtenerNumeroRebeldesBroker(ctx context.Context, message *DeLeia) (*ParaLeia, error) {
+
+
+	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad)
+	return &ParaLeia{X: 1}, nil
+}
+
+func (s *Server) ObtenerNumeroRebeldesFulcrum(ctx context.Context, message *DeLeia) (*ParaLeia, error) {
+
+
+	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad)
+	return &ParaLeia{X: 1}, nil
+}
+
