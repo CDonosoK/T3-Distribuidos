@@ -115,7 +115,7 @@ func DeleteCity() chat.Message{
 
 func main() {
 
-	//Conexión informantes con el servidor
+	//Conexión informantes con el servidor broker
 	var conn *grpc.ClientConn
 	conn, err := grpc.Dial(":9000", grpc.WithInsecure())
 	if err != nil {
