@@ -1,10 +1,10 @@
 package chat
 
 import (
+	"fmt"
 	"log"
 	"math/rand"
 	"os"
-	"fmt"
 
 	"golang.org/x/net/context"
 
@@ -18,12 +18,20 @@ type infoPlaneta struct {
 	NomPlaneta string
 	ciudad 	string
 	valor string
-	X          int32
-	Y          int32
-	Z          int32
+}
+
+type relojPlaneta struct {
+	X int32
+	Y int32
+	Z int32
 }
 
 var listaPlaneta []infoPlaneta
+var reloj = relojPlaneta{
+	X: 0,
+	Y: 0,
+	Z: 0,
+}
 
 func (s *Server) AddCityF(ctx context.Context, message *Message) (*Message, error) {
 	// Se obtiene la información
@@ -33,13 +41,21 @@ func (s *Server) AddCityF(ctx context.Context, message *Message) (*Message, erro
 		NomPlaneta: message.Planeta,
 		ciudad: message.Ciudad,
 		valor: message.Valor,
-		X: 0,
-		Y: 0,
-		Z: 0,
 	}
 
+	if message.Servidor == 0 {
+		reloj.X += 1
+	}
+	if message.Servidor == 1 {
+		reloj.Y += 1
+	}
+	if message.Servidor == 2 {
+		reloj.Z += 1
+	}
+	
+
 	listaPlaneta = append(listaPlaneta, nuevoPlaneta)
-	fmt.Println(listaPlaneta)
+	fmt.Println(reloj.X, reloj.Y, reloj.Z)
 
 	log.Printf("Planeta: %s", planeta)
 
@@ -47,7 +63,7 @@ func (s *Server) AddCityF(ctx context.Context, message *Message) (*Message, erro
 	directorio1 := "./Logs/" + planeta + ".txt"
 	directorio2 := "./Registros Planetarios/" + planeta + ".txt"
 
-	//SE ESCRIBE EN EL LOGS
+	//SE ESCRIBE EN EL LOGS - IGUAL PARA TODAS LAS FUNCIONES
 	logMessage := "AddCity " + message.Planeta + " " + message.Ciudad + " " + message.Valor + "\n"
 	f, err := os.OpenFile(directorio1, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
@@ -59,7 +75,6 @@ func (s *Server) AddCityF(ctx context.Context, message *Message) (*Message, erro
 	}
 
 	//SE ESCRIBE EN EL REGISTRO
-	//ESTO SE DEBERÍA MODIFICAR -> SE RECORRE EL STRUCT O LA LISTA
 	registroMessage := message.Planeta + " " + message.Ciudad + " " + message.Valor + "\n"
 	f1, err1 := os.OpenFile(directorio2, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err1 != nil {

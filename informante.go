@@ -184,7 +184,7 @@ func main() {
 				listaPlanetas = append(listaPlanetas, nuevoPlaneta)
 				//Conexión con los servidores Fulcrum
 
-				//CAMBIAR ESTO
+				//BORRAR ESA LÍNEA
 				response.Servidor = 0
 				if (response.Servidor == 0) {
 					//Se envia el mensaje al servidor Fulcrum 1
