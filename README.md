@@ -45,6 +45,7 @@ Esto servirá para el log en los servidores fulcrum y anotar que está ocurriend
 - Al momento de actualizar un valor (ya sea ciudad o valor), se asume que se indicará un lugar existente.
 - El reloj está pensado como un reloj universal, donde cada componente corresponde al Servidor Fulcrum al cual se le están realizando modificaciones.
 - La consistencia read your writes se hace en base a lo que envía el informante y en base a lo que recibe de vuelta, donde deben ser los mismos datos.
+- El brokerMosEisley envía de respuesta un {0,1,2} si se conecta aleatoriamente con el servidor Fulcrum 1, 2 o 3 respectivamente, y luego el informante realiza la conexión pertinente.
 
 RECORDAR BORRAR LO SIGUIENTE:
 
