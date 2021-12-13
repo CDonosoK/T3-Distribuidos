@@ -3,6 +3,8 @@ package chat
 import (
 	"log"
 	"math/rand"
+	"os"
+	"fmt"
 
 	"golang.org/x/net/context"
 
@@ -14,6 +16,8 @@ type Server struct {
 
 type infoPlaneta struct {
 	NomPlaneta string
+	ciudad 	string
+	valor string
 	X          int32
 	Y          int32
 	Z          int32
@@ -23,8 +27,35 @@ var listaPlaneta []infoPlaneta
 
 func (s *Server) AddCityF(ctx context.Context, message *Message) (*Message, error) {
 	// Se obtiene la información
+	planeta := message.Planeta
+
+	nuevoPlaneta := infoPlaneta{
+		NomPlaneta: message.Planeta,
+		ciudad: message.Ciudad,
+		valor: message.Valor,
+		X: 0,
+		Y: 0,
+		Z: 0,
+	}
+
+	listaPlaneta = append(listaPlaneta, nuevoPlaneta)
+	fmt.Println(listaPlaneta)
+
+	log.Printf("Planeta: %s", planeta)
 
 	// Se crean los archivos / registros
+	if _,err := os.Stat(planeta); os.IsNotExist(err) {
+		directorio1 := "./Logs/" + planeta + ".txt"
+		directorio2 := "./Registros Planetarios/" + planeta + ".txt"
+		os.Create(directorio1)
+		os.Create(directorio2)
+
+		//Escribir en los archivos
+
+	}else{
+		//Escribir en los archivos
+		log.Printf("El archivo ya existe")
+	}
 
 	// Actualizar el reloj
 

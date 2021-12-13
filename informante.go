@@ -183,6 +183,8 @@ func main() {
 				}
 				listaPlanetas = append(listaPlanetas, nuevoPlaneta)
 				//Conexión con los servidores Fulcrum
+
+				//CAMBIAR ESTO
 				if (response.Servidor == 0) {
 					//Se envia el mensaje al servidor Fulcrum 1
 					responsef1, errf1 := c1.AddCityF(context.Background(), &message)

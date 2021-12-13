@@ -4,12 +4,25 @@ import (
 
 	"log"
 	"net"
+	"os"
 
 	"google.golang.org/grpc"
 	"github.com/CDonosoK/T3-Distribuidos/chat"
 )
 
+func crearCarpeta(directorio string){
+	if _, err := os.Stat(directorio); os.IsNotExist(err) {
+		err = os.MkdirAll(directorio, 0755)
+		if err != nil {
+			log.Fatalf("Error creando la carpeta: %v", err)
+		}
+	}
+}
+
 func main(){
+	//Conexión informantes - fulcrum 1
+	crearCarpeta("Logs")
+	crearCarpeta("Registros Planetarios")
 	//Conexión informantes - fulcrum 2
 	lis3, err3 := net.Listen("tcp", ":9003")
 	if err3 != nil {
