@@ -54,6 +54,7 @@ Es importante aclarar que las máquinas dis70, dis71 y dis72 deben ejecutar los 
 - El reloj está pensado como un reloj universal, donde cada componente corresponde al Servidor Fulcrum al cual se le están realizando modificaciones.
 - La consistencia read your writes se hace en base a lo que envía el informante y en base a lo que recibe de vuelta, donde deben ser los mismos datos.
 - El brokerMosEisley envía de respuesta un {0,1,2} si se conecta aleatoriamente con el servidor Fulcrum 1, 2 o 3 respectivamente, y luego el informante realiza la conexión pertinente.
+- Cuando se ingresa el comando para eliminar una ciudad de un planeta, si el planeta se queda sin ciudad, el archivo de registro planetario de dicho planeta se eliminará.
 
 RECORDAR BORRAR LO SIGUIENTE:
 

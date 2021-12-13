@@ -99,6 +99,48 @@ func (s *Server) AddCityMessage(ctx context.Context, message *Message) (*Message
 }
 
 func (s *Server) UpdateNameF(ctx context.Context, message *Message) (*Message, error) {
+	planeta := message.Planeta
+	ciudad := message.Ciudad
+	valor := message.Valor
+
+	directorio1 := "./Logs/" + planeta + ".txt"
+	directorio2 := "./Registros Planetarios/" + planeta + ".txt"
+
+	for i := 0; i < len(listaPlaneta); i++ {
+		if listaPlaneta[i].NomPlaneta == planeta && listaPlaneta[i].ciudad == ciudad {
+			listaPlaneta[i].ciudad = valor
+		}
+	}
+	os.Remove(directorio2)
+
+	// SE ESCRIBE EN EL LOGS - IGUAL PARA TODAS LAS FUNCIONES
+	logMessage := "UpdateName " + message.Planeta + " " + message.Ciudad + " " + message.Valor + "\n"
+	f, err := os.OpenFile(directorio1, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Println(err)
+	}
+	defer f.Close()
+	if _, err := f.WriteString(logMessage); err != nil {
+		log.Println(err)
+	}
+
+	// SE REESCRIBE EL REGISTRO
+	for i := 0; i < len(listaPlaneta); i++ {
+		p := listaPlaneta[i].NomPlaneta
+		c := listaPlaneta[i].ciudad
+		v := listaPlaneta[i].valor
+		registroMessage := p + " " + c + " " + v + "\n"
+		f1, err1 := os.OpenFile(directorio2, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		if err1 != nil {
+			log.Println(err1)
+		}
+		defer f1.Close()
+		if _, err := f1.WriteString(registroMessage); err != nil {
+			log.Println(err)
+		}
+	}
+
+
 	serverElegido := int32(rand.Intn(3))
 
 
@@ -115,11 +157,53 @@ func (s *Server) UpdateNameMessage(ctx context.Context, message *Message) (*Mess
 }
 
 func (s *Server) UpdateNumberF(ctx context.Context, message *Message) (*Message, error) {
+	planeta := message.Planeta
+	ciudad := message.Ciudad
+	valor := message.Valor
+
+	directorio1 := "./Logs/" + planeta + ".txt"
+	directorio2 := "./Registros Planetarios/" + planeta + ".txt"
+
+	for i := 0; i < len(listaPlaneta); i++ {
+		if listaPlaneta[i].NomPlaneta == planeta && listaPlaneta[i].ciudad == ciudad {
+			listaPlaneta[i].valor = valor
+		}
+	}
+	os.Remove(directorio2)
+
+	// SE ESCRIBE EN EL LOGS - IGUAL PARA TODAS LAS FUNCIONES
+	logMessage := "UpdateNumber " + message.Planeta + " " + message.Ciudad + " " + message.Valor + "\n"
+	f, err := os.OpenFile(directorio1, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Println(err)
+	}
+	defer f.Close()
+	if _, err := f.WriteString(logMessage); err != nil {
+		log.Println(err)
+	}
+
+	// SE REESCRIBE EL REGISTRO
+	for i := 0; i < len(listaPlaneta); i++ {
+		p := listaPlaneta[i].NomPlaneta
+		c := listaPlaneta[i].ciudad
+		v := listaPlaneta[i].valor
+		registroMessage := p + " " + c + " " + v + "\n"
+		f1, err1 := os.OpenFile(directorio2, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		if err1 != nil {
+			log.Println(err1)
+		}
+		defer f1.Close()
+		if _, err := f1.WriteString(registroMessage); err != nil {
+			log.Println(err)
+		}
+	}
+
+
 	serverElegido := int32(rand.Intn(3))
 
 
 	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad, message.Valor)
-	return &Message{Servidor: serverElegido}, nil
+	return &Message{Planeta: message.Planeta, Ciudad: message.Ciudad, Valor: message.Valor, Servidor: serverElegido}, nil
 }
 
 func (s *Server) UpdateNumberMessage(ctx context.Context, message *Message) (*Message, error) {
@@ -131,11 +215,55 @@ func (s *Server) UpdateNumberMessage(ctx context.Context, message *Message) (*Me
 }
 
 func (s *Server) DeleteCityF(ctx context.Context, message *Message) (*Message, error) {
+	planeta := message.Planeta
+	ciudad := message.Ciudad
+
+	directorio1 := "./Logs/" + planeta + ".txt"
+	directorio2 := "./Registros Planetarios/" + planeta + ".txt"
+
+	var i = 0;
+	for i = 0; i < len(listaPlaneta); i++ {
+		if listaPlaneta[i].NomPlaneta == planeta && listaPlaneta[i].ciudad == ciudad {
+			break
+		}
+	}
+	listaPlaneta[i] = listaPlaneta[len(listaPlaneta)-1]
+	listaPlaneta = listaPlaneta[:len(listaPlaneta)-1]
+	os.Remove(directorio2)
+
+	// SE ESCRIBE EN EL LOGS - IGUAL PARA TODAS LAS FUNCIONES
+	logMessage := "DeleteCity " + message.Planeta + " " + message.Ciudad + "\n"
+	f, err := os.OpenFile(directorio1, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Println(err)
+	}
+	defer f.Close()
+	if _, err := f.WriteString(logMessage); err != nil {
+		log.Println(err)
+	}
+
+	// SE REESCRIBE EL REGISTRO
+	for i := 0; i < len(listaPlaneta); i++ {
+		p := listaPlaneta[i].NomPlaneta
+		c := listaPlaneta[i].ciudad
+		v := listaPlaneta[i].valor
+		registroMessage := p + " " + c + " " + v + "\n"
+		f1, err1 := os.OpenFile(directorio2, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		if err1 != nil {
+			log.Println(err1)
+		}
+		defer f1.Close()
+		if _, err := f1.WriteString(registroMessage); err != nil {
+			log.Println(err)
+		}
+	}
+
+
 	serverElegido := int32(rand.Intn(3))
 
 
 	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad, message.Valor)
-	return &Message{Servidor: serverElegido}, nil
+	return &Message{Planeta: message.Planeta, Ciudad: message.Ciudad, Valor: message.Valor, Servidor: serverElegido}, nil
 }
 
 func (s *Server) DeleteCityMessage(ctx context.Context, message *Message) (*Message, error) {
