@@ -489,7 +489,7 @@ func (s *Server) ObtenerNumeroRebeldesBroker(ctx context.Context, message *DeLei
 	//Por defecto se va con el 1
 	serverNombre = "Servidor Fulcrum 1"
 	var conn1 *grpc.ClientConn
-	conn1, err1 := grpc.Dial(":9002", grpc.WithInsecure())
+	conn1, err1 := grpc.Dial("dist70:9002", grpc.WithInsecure())
 	if err1 != nil {
 		log.Fatalf("Could not connect: %s", err1)
 	}
@@ -499,7 +499,7 @@ func (s *Server) ObtenerNumeroRebeldesBroker(ctx context.Context, message *DeLei
 	if (serverElegido == 1){
 		serverNombre = "Servidor Fulcrum 2"
 		var conn2 *grpc.ClientConn
-		conn2, err2 := grpc.Dial(":9003", grpc.WithInsecure())
+		conn2, err2 := grpc.Dial("dist71:9003", grpc.WithInsecure())
 		if err2 != nil {
 			log.Fatalf("Could not connect: %s", err2)
 		}
@@ -509,7 +509,7 @@ func (s *Server) ObtenerNumeroRebeldesBroker(ctx context.Context, message *DeLei
 	if (serverElegido == 2){
 		serverNombre = "Servidor Fulcrum 3"
 		var conn3 *grpc.ClientConn
-		conn3, err3 := grpc.Dial(":9004", grpc.WithInsecure())
+		conn3, err3 := grpc.Dial("dist72:9004", grpc.WithInsecure())
 		if err3 != nil {
 			log.Fatalf("Could not connect: %s", err3)
 		}
