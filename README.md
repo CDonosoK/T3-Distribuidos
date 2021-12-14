@@ -31,6 +31,8 @@ Es importante aclarar que las máquinas dis70, dis71 y dis72 deben ejecutar los 
 - Se debe ejecutar en la máquina dist69 el comando: 
 
 ``` go run brokerMosEisley.go```
+
+En dicha terminal se ejecutará el broker MosEisley y aparecerá por consola todo lo enviado (tanto por los informantes como la princesa leia)
 - Se debe ejecutar en la máquina dist70 el comando: 
 
 ``` go run sercidorFulcrum1.go``` 
