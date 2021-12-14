@@ -87,8 +87,6 @@ func (s *Server) AddCityF(ctx context.Context, message *Message) (*Message, erro
 	listaPlaneta = append(listaPlaneta, nuevoPlaneta)
 	fmt.Println(listaReloj)
 
-	log.Printf("Planeta: %s", planeta)
-
 	// SE CREAN LAS RUTAS CORRESPONDIENTES
 	directorio1 := "./Logs/" + planeta + ".txt"
 	directorio2 := "./Registros Planetarios/" + planeta + ".txt"
@@ -114,6 +112,9 @@ func (s *Server) AddCityF(ctx context.Context, message *Message) (*Message, erro
 	if _, err := f1.WriteString(registroMessage); err != nil {
 		log.Println(err)
 	}
+	log.Println("\n------------------------------------------------------")
+	log.Println(logMessage)
+	log.Println("\n------------------------------------------------------")
 
 	// Actualizar el return
 
@@ -122,8 +123,11 @@ func (s *Server) AddCityF(ctx context.Context, message *Message) (*Message, erro
 
 func (s *Server) AddCityMessage(ctx context.Context, message *Message) (*Message, error) {
 	serverElegido := int32(rand.Intn(3))	
+	logMessage := "AddCity " + message.Planeta + " " + message.Ciudad + " " + message.Valor + "\n"
 
-	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad, message.Valor)
+	log.Println("\n------------------------------------------------------")
+	log.Println(logMessage)
+	log.Println("\n------------------------------------------------------")
 	return &Message{Planeta: message.Planeta, Ciudad: message.Ciudad, Valor: message.Valor, Servidor: serverElegido}, nil
 }
 
@@ -210,20 +214,24 @@ func (s *Server) UpdateNameF(ctx context.Context, message *Message) (*Message, e
 			}
 		}
 	}
-	fmt.Println(listaReloj)
+	log.Println("\n------------------------------------------------------")
+	log.Println(logMessage)
+	log.Println("\n------------------------------------------------------")
 
 
 	serverElegido := int32(rand.Intn(3))
 
-
-	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad, message.Valor)
 	return &Message{Planeta: message.Planeta, Ciudad: message.Ciudad, Valor: message.Valor, Servidor: serverElegido}, nil
 }
 
 func (s *Server) UpdateNameMessage(ctx context.Context, message *Message) (*Message, error) {
 	serverElegido := int32(rand.Intn(3))
 
-	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad, message.Valor)
+	logMessage := "UpdateName " + message.Planeta + " " + message.Ciudad + " " + message.Valor + "\n"
+	log.Println("\n------------------------------------------------------")
+	log.Println(logMessage)
+	log.Println("\n------------------------------------------------------")
+
 	return &Message{Planeta: message.Planeta, Ciudad: message.Ciudad, Valor: message.Valor, Servidor: serverElegido}, nil
 }
 
@@ -310,21 +318,25 @@ func (s *Server) UpdateNumberF(ctx context.Context, message *Message) (*Message,
 			}
 		}
 	}
-	fmt.Println(listaReloj)
+	
+	log.Println("\n------------------------------------------------------")
+	log.Println(logMessage)
+	log.Println("\n------------------------------------------------------")
 
 
 	serverElegido := int32(rand.Intn(3))
 
-
-	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad, message.Valor)
 	return &Message{Planeta: message.Planeta, Ciudad: message.Ciudad, Valor: message.Valor, Servidor: serverElegido}, nil
 }
 
 func (s *Server) UpdateNumberMessage(ctx context.Context, message *Message) (*Message, error) {
 	serverElegido := int32(rand.Intn(3))
 
+	logMessage := "UpdateNumber " + message.Planeta + " " + message.Ciudad + " " + message.Valor + "\n"
+	log.Println("\n------------------------------------------------------")
+	log.Println(logMessage)
+	log.Println("\n------------------------------------------------------")
 
-	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad, message.Valor)
 	return &Message{Planeta: message.Planeta, Ciudad: message.Ciudad, Valor: message.Valor, Servidor: serverElegido}, nil
 }
 
@@ -413,26 +425,31 @@ func (s *Server) DeleteCityF(ctx context.Context, message *Message) (*Message, e
 			}
 		}
 	}
-	fmt.Println(listaReloj)
+	
+	log.Println("\n------------------------------------------------------")
+	log.Println(logMessage)
+	log.Println("\n------------------------------------------------------")
 
 
 	serverElegido := int32(rand.Intn(3))
 
-
-	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad, message.Valor)
 	return &Message{Planeta: message.Planeta, Ciudad: message.Ciudad, Valor: message.Valor, Servidor: serverElegido}, nil
 }
 
 func (s *Server) DeleteCityMessage(ctx context.Context, message *Message) (*Message, error) {
 	serverElegido := int32(rand.Intn(3))
 
+	logMessage := "DeleteCity " + message.Planeta + " " + message.Ciudad + "\n"
+	log.Println("\n------------------------------------------------------")
+	log.Println(logMessage)
+	log.Println("\n------------------------------------------------------")
 
-	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad, message.Valor)
 	return &Message{Planeta: message.Planeta, Ciudad: message.Ciudad, Servidor: serverElegido}, nil
 }
 
 func (s *Server) ObtenerNumeroRebeldesFulcrum(ctx context.Context, message *DeLeia) (*ParaLeia, error) {
 	log.Printf("")
+	log.Println("\n------------------------------------------------------")
 	log.Printf("Mensaje que se está recibiendo desde Broker: \n ~~~ Leia quiere saber los rebeldes de \n Planeta: "+message.Planeta +"  Ciudad: "+ message.Ciudad)
 	log.Printf("Buscando cantidad de rebeldes...")
 	numRebeldes := int32(0)
@@ -453,9 +470,7 @@ func (s *Server) ObtenerNumeroRebeldesFulcrum(ctx context.Context, message *DeLe
 			z = listaReloj[i].Z
 		}
 	}
-
-
-	log.Printf("Enviando mensaje a Broker")
+	log.Println("\n------------------------------------------------------")
 	return &ParaLeia{CantRebeldes: numRebeldes, X: x, Y: y, Z: z, Servidor: -1}, nil
 }
 
@@ -501,8 +516,10 @@ func (s *Server) ObtenerNumeroRebeldesBroker(ctx context.Context, message *DeLei
 		defer conn3.Close()
 		c = NewChatClient(conn3)
 	}
+	log.Println("\n------------------------------------------------------")
 	log.Printf("~~Leia solicita la cantidad de rebeldes en %s, %s \n", message.Planeta, message.Ciudad)
 	log.Printf("~~El servidor escogido aleatoriamente es: %s", serverNombre)
+	log.Println("\n------------------------------------------------------")
 
 	respuestaFulcrum, err := c.ObtenerNumeroRebeldesFulcrum(context.Background(), message)
 	
