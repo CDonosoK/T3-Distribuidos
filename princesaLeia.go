@@ -57,7 +57,6 @@ func main(){
 				x := int32(-1)
 				y := int32(-1)
 				z := int32(-1)
-				fmt.Println("Llega aca")
 				for i := 0; i < len(ArrayInfo); i++ {
 					if planeta == ArrayInfo[i].Planeta && ciudad == ArrayInfo[i].Ciudad{
 						x = ArrayInfo[i].X
@@ -66,7 +65,7 @@ func main(){
 					}
 				}
 
-				fmt.Println("Llega aca2")
+
 				mensajeDeLeia := chat.DeLeia{
 					X: x, 
 					Y: y, 
@@ -75,14 +74,11 @@ func main(){
 					Ciudad: ciudad,
 				}
 
-				fmt.Println("Llega aca3")
 				respuestaALeia, err := c.ObtenerNumeroRebeldesBroker(context.Background(), &mensajeDeLeia)
 				if err != nil {
 					log.Fatalf("Error when calling ObtenerNumeroRebeldesBroker: %s", err)
 				}			
 				flag := 0
-				
-				fmt.Println("Llega aca4")
 
 				for i := 0; i < len(ArrayInfo); i++ {
 					if planeta == ArrayInfo[i].Planeta && ciudad == ArrayInfo[i].Ciudad{
