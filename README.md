@@ -60,7 +60,7 @@ En la terminal del Almirante Thrawn aparecerán los comandos que se pueden reali
 
 En el servidor Fulcrum 3 aparecerá por consola todo lo que está ocurriendo (recibiendo), tanto por los informantes como la princesa leia 
 
-``` go run leia.go``` 
+``` go run princesaLeia.go``` 
 
 En la terminal de la Princesa Leia aparecerán los comandos que se pueden realizar por parte de la princesa leia
 
