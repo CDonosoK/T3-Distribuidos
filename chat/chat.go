@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"golang.org/x/net/context"
+	"google.golang.org/grpc"
 )
 
 type Server struct {
@@ -430,17 +431,64 @@ func (s *Server) DeleteCityMessage(ctx context.Context, message *Message) (*Mess
 	return &Message{Planeta: message.Planeta, Ciudad: message.Ciudad, Servidor: serverElegido}, nil
 }
 
-func (s *Server) ObtenerNumeroRebeldesBroker(ctx context.Context, message *DeLeia) (*ParaLeia, error) {
-
+func (s *Server) ObtenerNumeroRebeldesFulcrum(ctx context.Context, message *DeLeia) (*ParaLeia, error) {
+	log.Println("LLEGAN MENSAJITOS DE FULCRUM")
 
 	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n", message.Planeta, message.Ciudad)
-	return &ParaLeia{X: 1}, nil
+	return &ParaLeia{CantRebeldes: 5, X: 1, Y: 1, Z: 1, Servidor: 5}, nil
 }
 
-func (s *Server) ObtenerNumeroRebeldesFulcrum(ctx context.Context, message *DeLeia) (*ParaLeia, error) {
+func (s *Server) Merge(ctx context.Context, message *Merge) (*Merge, error) {
 
 
-	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n", message.Planeta, message.Ciudad)
-	return &ParaLeia{X: 1}, nil
+	return &Merge{}, nil
+}
+
+
+func (s *Server) ObtenerNumeroRebeldesBroker(ctx context.Context, message *DeLeia) (*ParaLeia, error) {
+	//serverElegido := int32(rand.Intn(3))
+	serverElegido := int32(0)
+	serverNombre := " "
+
+	//Por defecto se va con el 1
+	serverNombre = "Servidor Fulcrum 1"
+	var conn1 *grpc.ClientConn
+	conn1, err1 := grpc.Dial(":9002", grpc.WithInsecure())
+	if err1 != nil {
+		log.Fatalf("Could not connect: %s", err1)
+	}
+	defer conn1.Close()
+	c := NewChatClient(conn1)
+
+	if (serverElegido == 1){
+		serverNombre = "Servidor Fulcrum 2"
+		var conn2 *grpc.ClientConn
+		conn2, err2 := grpc.Dial(":9003", grpc.WithInsecure())
+		if err2 != nil {
+			log.Fatalf("Could not connect: %s", err2)
+		}
+		defer conn2.Close()
+		c = NewChatClient(conn2)
+	}
+	if (serverElegido == 2){
+		serverNombre = "Servidor Fulcrum 3"
+		var conn3 *grpc.ClientConn
+		conn3, err3 := grpc.Dial(":9004", grpc.WithInsecure())
+		if err3 != nil {
+			log.Fatalf("Could not connect: %s", err3)
+		}
+		defer conn3.Close()
+		c = NewChatClient(conn3)
+	}
+	log.Printf("~~Leia solicita la cantidad de rebeldes en %s, %s \n", message.Planeta, message.Ciudad)
+	log.Printf("~~El servidor escogido aleatoriamente es: %s", serverNombre)
+
+	respuestaFulcrum, err := c.ObtenerNumeroRebeldesFulcrum(context.Background(), message)
+	if err != nil {
+		log.Fatalf("Fulcrum no ha mandado info. %s",err)
+	}
+
+	return &ParaLeia{CantRebeldes: respuestaFulcrum.CantRebeldes, X: respuestaFulcrum.X, Y: respuestaFulcrum.Y, Z: respuestaFulcrum.Z, Servidor: serverElegido}, nil
+
 }
 

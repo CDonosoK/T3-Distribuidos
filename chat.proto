@@ -12,10 +12,11 @@ message Message {
 
     int32 servidor = 5;
 
-    string X = 6;
-    string Y = 7;  
-    string Z = 8;
+    repeated int32 X = 6;
+    repeated int32 Y = 7;  
+    repeated int32 Z = 8;
 }
+
 
 message deLeia{
     int32 X = 1;
@@ -35,6 +36,20 @@ message paraLeia{
     int32 Servidor = 5;
 }
 
+message merge{
+    int32 X_1 = 1;
+    int32 Y_1 = 2;
+    int32 Z_1 = 3;
+
+    int32 X_2 = 4;
+    int32 Y_2 = 5;
+    int32 Z_2 = 6;
+
+    int32 X_3 = 7;
+    int32 Y_3 = 8;
+    int32 Z_3 = 9;
+}
+
 service Chat {
     rpc AddCityMessage(Message) returns (Message) {}
     rpc UpdateNameMessage(Message) returns (Message) {}
@@ -48,4 +63,6 @@ service Chat {
 
     rpc ObtenerNumeroRebeldesBroker(deLeia) returns (paraLeia) {}
     rpc ObtenerNumeroRebeldesFulcrum(deLeia) returns (paraLeia) {}
+
+    rpc Merge(merge) returns (merge) {}
 }

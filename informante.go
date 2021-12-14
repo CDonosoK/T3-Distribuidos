@@ -26,7 +26,6 @@ type vectorReloj struct{
 }
 
 var listaReloj []vectorReloj
-
 var listaPlanetas []informacion
 
 func AddCity() chat.Message{
@@ -147,7 +146,7 @@ func main() {
 	if err2 != nil {
 		log.Fatalf("Could not connect: %s", err2)
 	}
-	defer conn.Close()
+	defer conn2.Close()
 	c2 := chat.NewChatClient(conn2)
 
 	//Conexión informantes con el fulcrum 3
@@ -156,7 +155,7 @@ func main() {
 	if err3 != nil {
 		log.Fatalf("Could not connect: %s", err3)
 	}
-	defer conn.Close()
+	defer conn3.Close()
 	c3 := chat.NewChatClient(conn3)
 
 	salir := false
