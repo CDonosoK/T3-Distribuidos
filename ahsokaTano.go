@@ -175,7 +175,7 @@ func main() {
 				message.Tipo = "0"
 				response, err := c.AddCityMessage(context.Background(), &message)
 				if err != nil {
-					log.Fatalf("Error when calling SendMessage: %s", err)
+					log.Fatalf("Error when calling AddCityMessage: %s", err)
 				}
 				//CONSISTENCIA READ YOUR WRITES
 				if (message.Planeta == response.Planeta && message.Ciudad == response.Ciudad && message.Valor == response.Valor) {
@@ -240,7 +240,7 @@ func main() {
 					// SE ENVÍA EL MENSAJE A FULCRUM 1
 					responsef1, errf1 := c1.AddCityF(context.Background(), &message)
 					if errf1 != nil {
-						log.Fatalf("Error when calling SendMessage: %s", errf1)
+						log.Fatalf("Error when calling AddCityF: %s", errf1)
 					}
 					log.Printf("Conectado con el servidor: %d", responsef1.Servidor)
 
@@ -249,7 +249,7 @@ func main() {
 					// SE ENVÍA EL MENSAJE A FULCRUM 2
 					responsef2, errf2 := c2.AddCityF(context.Background(), &message)
 					if errf2 != nil {
-						log.Fatalf("Error when calling SendMessage: %s", errf2)
+						log.Fatalf("Error when calling AddCityF: %s", errf2)
 					}
 					log.Printf("Conectado con el servidor: %d", responsef2.Servidor)
 				}
@@ -257,7 +257,7 @@ func main() {
 					// SE ENVÍA EL MENSAJE A FULCRUM 3
 					responsef3, errf3 := c3.AddCityF(context.Background(), &message)
 					if errf3 != nil {
-						log.Fatalf("Error when calling SendMessage: %s", errf3)
+						log.Fatalf("Error when calling AddCityF: %s", errf3)
 					}
 					log.Printf("Conectado con el servidor: %d", responsef3.Servidor)
 				}
@@ -268,7 +268,7 @@ func main() {
 				message.Tipo = "1"
 				response, err := c.UpdateNameMessage(context.Background(), &message)
 				if err != nil {
-					log.Fatalf("Error when calling SendMessage: %s", err)
+					log.Fatalf("Error when calling UpdateNameMessage: %s", err)
 				}
 
 				//CONSISTENCIA READ YOUR WRITES
@@ -329,7 +329,7 @@ func main() {
 					// SE ENVÍA EL MENSAJE A FULCRUM 1
 					responsef1, errf1 := c1.UpdateNameF(context.Background(), &message)
 					if errf1 != nil {
-						log.Fatalf("Error when calling SendMessage: %s", errf1)
+						log.Fatalf("Error when calling UpdateNameF: %s", errf1)
 					}
 					log.Printf("Conectado con el servidor: %d", responsef1.Servidor)
 
@@ -338,7 +338,7 @@ func main() {
 					// SE ENVÍA EL MENSAJE A FULCRUM 2
 					responsef2, errf2 := c2.UpdateNameF(context.Background(), &message)
 					if errf2 != nil {
-						log.Fatalf("Error when calling SendMessage: %s", errf2)
+						log.Fatalf("Error when calling UpdateNameF: %s", errf2)
 					}
 					log.Printf("Conectado con el servidor: %d", responsef2.Servidor)
 				}
@@ -346,7 +346,7 @@ func main() {
 					// SE ENVÍA EL MENSAJE A FULCRUM 3
 					responsef3, errf3 := c3.UpdateNameF(context.Background(), &message)
 					if errf3 != nil {
-						log.Fatalf("Error when calling SendMessage: %s", errf3)
+						log.Fatalf("Error when calling UpdateNameF: %s", errf3)
 					}
 					log.Printf("Conectado con el servidor: %d", responsef3.Servidor)
 				}
@@ -357,7 +357,7 @@ func main() {
 				message.Tipo = "2"
 				response, err := c.UpdateNumberMessage(context.Background(), &message)
 				if err != nil {
-					log.Fatalf("Error when calling SendMessage: %s", err)
+					log.Fatalf("Error when calling UpdateNumberMessage: %s", err)
 				}
 				log.Printf("Response from server: %d", response.Servidor)
 
@@ -419,7 +419,7 @@ func main() {
 					// SE ENVÍA EL MENSAJE A FULCRUM 1
 					responsef1, errf1 := c1.UpdateNumberF(context.Background(), &message)
 					if errf1 != nil {
-						log.Fatalf("Error when calling SendMessage: %s", errf1)
+						log.Fatalf("Error when calling UpdateNumberF: %s", errf1)
 					}
 					log.Printf("Conectado con el servidor: %d", responsef1.Servidor)
 
@@ -428,7 +428,7 @@ func main() {
 					// SE ENVÍA EL MENSAJE A FULCRUM 2
 					responsef2, errf2 := c2.UpdateNumberF(context.Background(), &message)
 					if errf2 != nil {
-						log.Fatalf("Error when calling SendMessage: %s", errf2)
+						log.Fatalf("Error when calling UpdateNumberF: %s", errf2)
 					}
 					log.Printf("Conectado con el servidor: %d", responsef2.Servidor)
 				}
@@ -436,7 +436,7 @@ func main() {
 					// SE ENVÍA EL MENSAJE A FULCRUM 3
 					responsef3, errf3 := c3.UpdateNumberF(context.Background(), &message)
 					if errf3 != nil {
-						log.Fatalf("Error when calling SendMessage: %s", errf3)
+						log.Fatalf("Error when calling UpdateNumberF: %s", errf3)
 					}
 					log.Printf("Conectado con el servidor: %d", responsef3.Servidor)
 				}
@@ -448,7 +448,7 @@ func main() {
 				message.Tipo = "3"
 				response, err := c.DeleteCityMessage(context.Background(), &message)
 				if err != nil {
-					log.Fatalf("Error when calling SendMessage: %s", err)
+					log.Fatalf("Error when calling DeleteCityMessage: %s", err)
 				}
 				log.Printf("Response from server: %d", response.Servidor)
 
@@ -515,7 +515,7 @@ func main() {
 					// SE ENVÍA EL MENSAJE A FULCRUM 1
 					responsef1, errf1 := c1.DeleteCityF(context.Background(), &message)
 					if errf1 != nil {
-						log.Fatalf("Error when calling SendMessage: %s", errf1)
+						log.Fatalf("Error when calling DeleteCityF: %s", errf1)
 					}
 					log.Printf("Conectado con el servidor: %d", responsef1.Servidor)
 
@@ -524,7 +524,7 @@ func main() {
 					// SE ENVÍA EL MENSAJE A FULCRUM 2
 					responsef2, errf2 := c2.DeleteCityF(context.Background(), &message)
 					if errf2 != nil {
-						log.Fatalf("Error when calling SendMessage: %s", errf2)
+						log.Fatalf("Error when calling DeleteCityF: %s", errf2)
 					}
 					log.Printf("Conectado con el servidor: %d", responsef2.Servidor)
 				}
@@ -532,7 +532,7 @@ func main() {
 					// SE ENVÍA EL MENSAJE A FULCRUM 3
 					responsef3, errf3 := c3.DeleteCityF(context.Background(), &message)
 					if errf3 != nil {
-						log.Fatalf("Error when calling SendMessage: %s", errf3)
+						log.Fatalf("Error when calling DeleteCityF: %s", errf3)
 					}
 					log.Printf("Conectado con el servidor: %d", responsef3.Servidor)
 				}
@@ -543,7 +543,7 @@ func main() {
 			}
 			
 			//Si se quiere ver la información guardada en memoria, descomentar la siguiente línea
-			fmt.Println(listaPlanetas)
+			//mt.Println(listaPlanetas)
 
 			if salir {
 				break
