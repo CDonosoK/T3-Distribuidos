@@ -33,21 +33,36 @@ Es importante aclarar que las máquinas dis70, dis71 y dis72 deben ejecutar los 
 ``` go run brokerMosEisley.go```
 
 En dicha terminal se ejecutará el broker MosEisley y aparecerá por consola todo lo enviado (tanto por los informantes como la princesa leia)
+
 - Se debe ejecutar en la máquina dist70 el comando: 
 
 ``` go run sercidorFulcrum1.go``` 
 
-``` go run informante.go ``` 
+En el servidor Fulcrum 1 aparecerá por consola todo lo que está ocurriendo (recibiendo), tanto por los informantes como la princesa leia
+
+``` go run ahsokaTano.go ``` 
+
+En la terminal de Ahsoka Tano aparecerán los comandos que se pueden realizar por parte de los informantes
+
 - Se debe ejecutar en la máquina dist71 el comando: 
 
-``` go run sercidorFulcrum2.go ```  
+``` go run sercidorFulcrum2.go ``` 
 
-``` go run informante.go``` 
+En el servidor Fulcrum 2 aparecerá por consola todo lo que está ocurriendo (recibiendo), tanto por los informantes como la princesa leia
+
+``` go run almiranteThrawn.go``` 
+
+En la terminal del Almirante Thrawn aparecerán los comandos que se pueden realizar por parte de los informantes
+
 - Se debe ejecutar en la máquina dist72 el comando: 
 
-``` go run sercidorFulcrum3.go```  
+``` go run sercidorFulcrum3.go``` 
+
+En el servidor Fulcrum 3 aparecerá por consola todo lo que está ocurriendo (recibiendo), tanto por los informantes como la princesa leia 
 
 ``` go run leia.go``` 
+
+En la terminal de la Princesa Leia aparecerán los comandos que se pueden realizar por parte de la princesa leia
 
 ## CONSIDERACIONES
 - Se asume que tanto los informantes, como leia son inteligentes y seguirán las instrucciones que aparecen en pantalla.
