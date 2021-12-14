@@ -468,8 +468,7 @@ func (s *Server) Merge(ctx context.Context, message *Merge) (*Merge, error) {
 
 
 func (s *Server) ObtenerNumeroRebeldesBroker(ctx context.Context, message *DeLeia) (*ParaLeia, error) {
-	//serverElegido := int32(rand.Intn(3))
-	serverElegido := int32(0)
+	serverElegido := int32(rand.Intn(3))
 	serverNombre := " "
 
 	//Por defecto se va con el 1
@@ -506,6 +505,7 @@ func (s *Server) ObtenerNumeroRebeldesBroker(ctx context.Context, message *DeLei
 	log.Printf("~~El servidor escogido aleatoriamente es: %s", serverNombre)
 
 	respuestaFulcrum, err := c.ObtenerNumeroRebeldesFulcrum(context.Background(), message)
+	
 	if err != nil {
 		log.Fatalf("Fulcrum no ha mandado info. %s",err)
 	}

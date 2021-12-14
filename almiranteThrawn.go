@@ -236,8 +236,6 @@ func main() {
 				listaPlanetas = append(listaPlanetas, nuevoPlaneta)
 				//CONEXIÓN CON LOS SERVIDORES FULCRUM
 
-				//BORRAR ESA LÍNEA
-				response.Servidor = 0
 				if (response.Servidor == 0) {
 					// SE ENVÍA EL MENSAJE A FULCRUM 1
 					responsef1, errf1 := c1.AddCityF(context.Background(), &message)
@@ -326,8 +324,7 @@ func main() {
 					}
 				}
 				// CONEXIÓN CON LOS SERVIDORES FULCRUM
-				//BORRAR ESA LÍNEA
-				response.Servidor = 0
+
 				if (response.Servidor == 0) {
 					// SE ENVÍA EL MENSAJE A FULCRUM 1
 					responsef1, errf1 := c1.UpdateNameF(context.Background(), &message)
@@ -417,8 +414,7 @@ func main() {
 					}
 				}
 				// CONEXIÓN CON LOS SERVIDORES FULCRUM
-				//BORRAR ESA LÍNEA
-				response.Servidor = 0
+
 				if (response.Servidor == 0) {
 					// SE ENVÍA EL MENSAJE A FULCRUM 1
 					responsef1, errf1 := c1.UpdateNumberF(context.Background(), &message)
@@ -514,8 +510,7 @@ func main() {
 				listaPlanetas = listaPlanetas[:len(listaPlanetas)-1]
 
 				// CONEXIÓN CON LOS SERVIDORES FULCRUM
-				//BORRAR ESA LÍNEA
-				response.Servidor = 0
+
 				if (response.Servidor == 0) {
 					// SE ENVÍA EL MENSAJE A FULCRUM 1
 					responsef1, errf1 := c1.DeleteCityF(context.Background(), &message)
