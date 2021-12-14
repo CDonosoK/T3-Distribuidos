@@ -96,9 +96,12 @@ func main(){
 							ArrayInfo[i].Z = respuestaALeia.Z
 							ArrayInfo[i].UltimoServidor = respuestaALeia.Servidor
 
-							fmt.Println("La cantidad de rebeldes en %s, %s es de %d",ciudad, planeta, respuestaALeia.CantRebeldes)
+							fmt.Println("La cantidad de rebeldes en")
+							fmt.Println(ciudad, planeta)
+							fmt.Println( respuestaALeia.CantRebeldes)
 							fmt.Println("\n")
-							fmt.Println("El reloj del planeta es X: %d, Y: %d, Z: %d", ArrayInfo[i].X, ArrayInfo[i].Y, ArrayInfo[i].Z)
+							fmt.Println("El reloj del planeta es ")
+							fmt.Println(ArrayInfo[i].X, ArrayInfo[i].Y, ArrayInfo[i].Z)
 						}
 					}
 				}
@@ -115,9 +118,12 @@ func main(){
 					}
 					ArrayInfo = append(ArrayInfo, nuevoStruct)
 
-					fmt.Println("La cantidad de rebeldes en %s, %s es de %d",ciudad, planeta, nuevoStruct.Valor)
+					fmt.Println("La cantidad de rebeldes en")
+					fmt.Println(ciudad, planeta)					
+					fmt.Println(nuevoStruct.Valor)
 					fmt.Println("\n")
-					fmt.Println("El reloj del planeta es X: %d, Y: %d, Z: %d", nuevoStruct.X, nuevoStruct.Y,nuevoStruct.Z)
+					fmt.Println("El reloj del planeta es ")
+					fmt.Println(nuevoStruct.X, nuevoStruct.Y, nuevoStruct.Z)
 				}
 
 				
@@ -128,6 +134,5 @@ func main(){
 		if salir {
 			break
 		}
-		fmt.Println(ArrayInfo)
 	}
 }

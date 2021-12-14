@@ -5,6 +5,7 @@ import (
 	"log"
 	"math/rand"
 	"os"
+	"strconv"
 
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
@@ -222,7 +223,6 @@ func (s *Server) UpdateNameF(ctx context.Context, message *Message) (*Message, e
 func (s *Server) UpdateNameMessage(ctx context.Context, message *Message) (*Message, error) {
 	serverElegido := int32(rand.Intn(3))
 
-
 	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n Valor: %s", message.Planeta, message.Ciudad, message.Valor)
 	return &Message{Planeta: message.Planeta, Ciudad: message.Ciudad, Valor: message.Valor, Servidor: serverElegido}, nil
 }
@@ -432,11 +432,33 @@ func (s *Server) DeleteCityMessage(ctx context.Context, message *Message) (*Mess
 }
 
 func (s *Server) ObtenerNumeroRebeldesFulcrum(ctx context.Context, message *DeLeia) (*ParaLeia, error) {
-	log.Println("LLEGAN MENSAJITOS DE FULCRUM")
+	log.Printf("")
+	log.Printf("Mensaje que se está recibiendo desde Broker: \n ~~~ Leia quiere saber los rebeldes de \n Planeta: "+message.Planeta +"  Ciudad: "+ message.Ciudad)
+	log.Printf("Buscando cantidad de rebeldes...")
+	numRebeldes := int32(0)
+	for i := 0; i < len(listaPlaneta); i++ {
+		if message.Planeta == listaPlaneta[i].NomPlaneta{
+			nRebeldesS,_ := strconv.Atoi(listaPlaneta[i].valor)
+			numRebeldes = int32(nRebeldesS)
+		}
+	}
 
-	log.Printf("Mensaje que se está recibiendo: \n Planeta: %s \n Ciudad: %s \n", message.Planeta, message.Ciudad)
-	return &ParaLeia{CantRebeldes: 5, X: 1, Y: 1, Z: 1, Servidor: 5}, nil
+	x := int32(-1)
+	y := int32(-1)
+	z := int32(-1)
+	for i := 0; i <len(listaReloj); i++{
+		if message.Planeta == listaReloj[i].Planeta{
+			x = listaReloj[i].X
+			y = listaReloj[i].Y 
+			z = listaReloj[i].Z
+		}
+	}
+
+
+	log.Printf("Enviando mensaje a Broker")
+	return &ParaLeia{CantRebeldes: numRebeldes, X: x, Y: y, Z: z, Servidor: -1}, nil
 }
+
 
 func (s *Server) Merge(ctx context.Context, message *Merge) (*Merge, error) {
 
