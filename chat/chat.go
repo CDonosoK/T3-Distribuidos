@@ -20,17 +20,14 @@ type infoPlaneta struct {
 }
 
 type relojPlaneta struct {
+	Planeta string
 	X int32
 	Y int32
 	Z int32
 }
 
 var listaPlaneta []infoPlaneta
-var reloj = relojPlaneta{
-	X: 0,
-	Y: 0,
-	Z: 0,
-}
+var listaReloj []relojPlaneta
 
 func (s *Server) AddCityF(ctx context.Context, message *Message) (*Message, error) {
 	// SE OBTIENE LA INFORMACIÓN
@@ -42,21 +39,51 @@ func (s *Server) AddCityF(ctx context.Context, message *Message) (*Message, erro
 		valor: message.Valor,
 	}
 
-
 	// SE ACTUALIZA EL RELOJ
-	if message.Servidor == 0 {
-		reloj.X += 1
-	}
-	if message.Servidor == 1 {
-		reloj.Y += 1
-	}
-	if message.Servidor == 2 {
-		reloj.Z += 1
+	var planetaEsta = false
+	if (len(listaReloj) == 0) {
+		listaReloj = append(listaReloj, relojPlaneta{Planeta: planeta, X: 0, Y: 0, Z: 0})
+		if message.Servidor == 0 {
+			listaReloj[0].X += 1
+		}
+		if message.Servidor == 1 {
+			listaReloj[0].Y += 1
+		}
+		if message.Servidor == 2 {
+			listaReloj[0].Z += 1
+		}
+	} else {
+		for i := 0; i < len(listaReloj); i++ {
+			if listaReloj[i].Planeta == planeta {
+				planetaEsta = true
+				if message.Servidor == 0 {
+					listaReloj[i].X += 1
+				}
+				if message.Servidor == 1 {
+					listaReloj[i].Y += 1
+				}
+				if message.Servidor == 2 {
+					listaReloj[i].Z += 1
+				}
+			}
+		}
+		if !planetaEsta {
+			listaReloj = append(listaReloj, relojPlaneta{Planeta: planeta, X: 0, Y: 0, Z: 0})
+			if message.Servidor == 0 {
+				listaReloj[len(listaReloj)-1].X += 1
+			}
+			if message.Servidor == 1 {
+				listaReloj[len(listaReloj)-1].Y += 1
+			}
+			if message.Servidor == 2 {
+				listaReloj[len(listaReloj)-1].Z += 1
+			}
+		}
 	}
 	
 
 	listaPlaneta = append(listaPlaneta, nuevoPlaneta)
-	fmt.Println(reloj.X, reloj.Y, reloj.Z)
+	fmt.Println(listaReloj)
 
 	log.Printf("Planeta: %s", planeta)
 
@@ -140,6 +167,49 @@ func (s *Server) UpdateNameF(ctx context.Context, message *Message) (*Message, e
 		}
 	}
 
+	// SE ACTUALIZA EL RELOJ
+	var planetaEsta = false
+	if (len(listaReloj) == 0) {
+		listaReloj = append(listaReloj, relojPlaneta{Planeta: planeta, X: 0, Y: 0, Z: 0})
+		if message.Servidor == 0 {
+			listaReloj[0].X += 1
+		}
+		if message.Servidor == 1 {
+			listaReloj[0].Y += 1
+		}
+		if message.Servidor == 2 {
+			listaReloj[0].Z += 1
+		}
+	} else {
+		for i := 0; i < len(listaReloj); i++ {
+			if listaReloj[i].Planeta == planeta {
+				planetaEsta = true
+				if message.Servidor == 0 {
+					listaReloj[i].X += 1
+				}
+				if message.Servidor == 1 {
+					listaReloj[i].Y += 1
+				}
+				if message.Servidor == 2 {
+					listaReloj[i].Z += 1
+				}
+			}
+		}
+		if !planetaEsta {
+			listaReloj = append(listaReloj, relojPlaneta{Planeta: planeta, X: 0, Y: 0, Z: 0})
+			if message.Servidor == 0 {
+				listaReloj[len(listaReloj)-1].X += 1
+			}
+			if message.Servidor == 1 {
+				listaReloj[len(listaReloj)-1].Y += 1
+			}
+			if message.Servidor == 2 {
+				listaReloj[len(listaReloj)-1].Z += 1
+			}
+		}
+	}
+	fmt.Println(listaReloj)
+
 
 	serverElegido := int32(rand.Intn(3))
 
@@ -197,6 +267,49 @@ func (s *Server) UpdateNumberF(ctx context.Context, message *Message) (*Message,
 			log.Println(err)
 		}
 	}
+
+	// SE ACTUALIZA EL RELOJ
+	var planetaEsta = false
+	if (len(listaReloj) == 0) {
+		listaReloj = append(listaReloj, relojPlaneta{Planeta: planeta, X: 0, Y: 0, Z: 0})
+		if message.Servidor == 0 {
+			listaReloj[0].X += 1
+		}
+		if message.Servidor == 1 {
+			listaReloj[0].Y += 1
+		}
+		if message.Servidor == 2 {
+			listaReloj[0].Z += 1
+		}
+	} else {
+		for i := 0; i < len(listaReloj); i++ {
+			if listaReloj[i].Planeta == planeta {
+				planetaEsta = true
+				if message.Servidor == 0 {
+					listaReloj[i].X += 1
+				}
+				if message.Servidor == 1 {
+					listaReloj[i].Y += 1
+				}
+				if message.Servidor == 2 {
+					listaReloj[i].Z += 1
+				}
+			}
+		}
+		if !planetaEsta {
+			listaReloj = append(listaReloj, relojPlaneta{Planeta: planeta, X: 0, Y: 0, Z: 0})
+			if message.Servidor == 0 {
+				listaReloj[len(listaReloj)-1].X += 1
+			}
+			if message.Servidor == 1 {
+				listaReloj[len(listaReloj)-1].Y += 1
+			}
+			if message.Servidor == 2 {
+				listaReloj[len(listaReloj)-1].Z += 1
+			}
+		}
+	}
+	fmt.Println(listaReloj)
 
 
 	serverElegido := int32(rand.Intn(3))
@@ -257,6 +370,49 @@ func (s *Server) DeleteCityF(ctx context.Context, message *Message) (*Message, e
 			log.Println(err)
 		}
 	}
+
+	// SE ACTUALIZA EL RELOJ
+	var planetaEsta = false
+	if (len(listaReloj) == 0) {
+		listaReloj = append(listaReloj, relojPlaneta{Planeta: planeta, X: 0, Y: 0, Z: 0})
+		if message.Servidor == 0 {
+			listaReloj[0].X += 1
+		}
+		if message.Servidor == 1 {
+			listaReloj[0].Y += 1
+		}
+		if message.Servidor == 2 {
+			listaReloj[0].Z += 1
+		}
+	} else {
+		for i := 0; i < len(listaReloj); i++ {
+			if listaReloj[i].Planeta == planeta {
+				planetaEsta = true
+				if message.Servidor == 0 {
+					listaReloj[i].X += 1
+				}
+				if message.Servidor == 1 {
+					listaReloj[i].Y += 1
+				}
+				if message.Servidor == 2 {
+					listaReloj[i].Z += 1
+				}
+			}
+		}
+		if !planetaEsta {
+			listaReloj = append(listaReloj, relojPlaneta{Planeta: planeta, X: 0, Y: 0, Z: 0})
+			if message.Servidor == 0 {
+				listaReloj[len(listaReloj)-1].X += 1
+			}
+			if message.Servidor == 1 {
+				listaReloj[len(listaReloj)-1].Y += 1
+			}
+			if message.Servidor == 2 {
+				listaReloj[len(listaReloj)-1].Z += 1
+			}
+		}
+	}
+	fmt.Println(listaReloj)
 
 
 	serverElegido := int32(rand.Intn(3))

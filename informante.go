@@ -19,16 +19,13 @@ type informacion struct {
 }
 
 type vectorReloj struct{
+	Planeta string
 	X int32
 	Y int32
 	Z int32
 }
 
-var reloj = vectorReloj{
-	X: 0,
-	Y: 0,
-	Z: 0,
-}
+var listaReloj []vectorReloj
 
 var listaPlanetas []informacion
 
@@ -194,15 +191,49 @@ func main() {
 
 					ultimoServidor: response.Servidor,
 				}
-				if (response.Servidor == 0) {
-					reloj.X += 1
+
+				// SE ACTUALIZA EL RELOJ
+				var planetaEsta = false
+				if (len(listaReloj) == 0) {
+					listaReloj = append(listaReloj, vectorReloj{Planeta: message.Planeta, X: 0, Y: 0, Z: 0})
+					if message.Servidor == 0 {
+						listaReloj[0].X += 1
+					}
+					if message.Servidor == 1 {
+						listaReloj[0].Y += 1
+					}
+					if message.Servidor == 2 {
+						listaReloj[0].Z += 1
+					}
+				} else {
+					for i := 0; i < len(listaReloj); i++ {
+						if listaReloj[i].Planeta == message.Planeta {
+							planetaEsta = true
+							if message.Servidor == 0 {
+								listaReloj[i].X += 1
+							}
+							if message.Servidor == 1 {
+								listaReloj[i].Y += 1
+							}
+							if message.Servidor == 2 {
+								listaReloj[i].Z += 1
+							}
+						}
+					}
+					if !planetaEsta {
+						listaReloj = append(listaReloj, vectorReloj{Planeta: message.Planeta, X: 0, Y: 0, Z: 0})
+						if message.Servidor == 0 {
+							listaReloj[len(listaReloj)-1].X += 1
+						}
+						if message.Servidor == 1 {
+							listaReloj[len(listaReloj)-1].Y += 1
+						}
+						if message.Servidor == 2 {
+							listaReloj[len(listaReloj)-1].Z += 1
+						}
+					}
 				}
-				if (response.Servidor == 1) {
-					reloj.Y += 1
-				}
-				if (response.Servidor == 2) {
-					reloj.Z += 1
-				}
+
 				listaPlanetas = append(listaPlanetas, nuevoPlaneta)
 				//CONEXIÓN CON LOS SERVIDORES FULCRUM
 
@@ -252,14 +283,46 @@ func main() {
 				for i := 0; i < len(listaPlanetas); i++ {
 					if listaPlanetas[i].Planeta == message.Planeta && listaPlanetas[i].Ciudad == message.Ciudad {
 						listaPlanetas[i].Ciudad = message.Valor
-						if response.Servidor == 0 {
-							reloj.X += 1
-						}
-						if response.Servidor == 1 {
-							reloj.Y += 1
-						}
-						if response.Servidor == 2 {
-							reloj.Z += 1
+						// SE ACTUALIZA EL RELOJ
+						var planetaEsta = false
+						if (len(listaReloj) == 0) {
+							listaReloj = append(listaReloj, vectorReloj{Planeta: message.Planeta, X: 0, Y: 0, Z: 0})
+							if message.Servidor == 0 {
+								listaReloj[0].X += 1
+							}
+							if message.Servidor == 1 {
+								listaReloj[0].Y += 1
+							}
+							if message.Servidor == 2 {
+								listaReloj[0].Z += 1
+							}
+						} else {
+							for i := 0; i < len(listaReloj); i++ {
+								if listaReloj[i].Planeta == message.Planeta {
+									planetaEsta = true
+									if message.Servidor == 0 {
+										listaReloj[i].X += 1
+									}
+									if message.Servidor == 1 {
+										listaReloj[i].Y += 1
+									}
+									if message.Servidor == 2 {
+										listaReloj[i].Z += 1
+									}
+								}
+							}
+							if !planetaEsta {
+								listaReloj = append(listaReloj, vectorReloj{Planeta: message.Planeta, X: 0, Y: 0, Z: 0})
+								if message.Servidor == 0 {
+									listaReloj[len(listaReloj)-1].X += 1
+								}
+								if message.Servidor == 1 {
+									listaReloj[len(listaReloj)-1].Y += 1
+								}
+								if message.Servidor == 2 {
+									listaReloj[len(listaReloj)-1].Z += 1
+								}
+							}
 						}
 					}
 				}
@@ -311,14 +374,46 @@ func main() {
 				for i := 0; i < len(listaPlanetas); i++ {
 					if listaPlanetas[i].Planeta == message.Planeta && listaPlanetas[i].Ciudad == message.Ciudad {
 						listaPlanetas[i].Valor = message.Valor
-						if response.Servidor == 0 {
-							reloj.X += 1
-						}
-						if response.Servidor == 1 {
-							reloj.Y += 1
-						}
-						if response.Servidor == 2 {
-							reloj.Z += 1
+						// SE ACTUALIZA EL RELOJ
+						var planetaEsta = false
+						if (len(listaReloj) == 0) {
+							listaReloj = append(listaReloj, vectorReloj{Planeta: message.Planeta, X: 0, Y: 0, Z: 0})
+							if message.Servidor == 0 {
+								listaReloj[0].X += 1
+							}
+							if message.Servidor == 1 {
+								listaReloj[0].Y += 1
+							}
+							if message.Servidor == 2 {
+								listaReloj[0].Z += 1
+							}
+						} else {
+							for i := 0; i < len(listaReloj); i++ {
+								if listaReloj[i].Planeta == message.Planeta {
+									planetaEsta = true
+									if message.Servidor == 0 {
+										listaReloj[i].X += 1
+									}
+									if message.Servidor == 1 {
+										listaReloj[i].Y += 1
+									}
+									if message.Servidor == 2 {
+										listaReloj[i].Z += 1
+									}
+								}
+							}
+							if !planetaEsta {
+								listaReloj = append(listaReloj, vectorReloj{Planeta: message.Planeta, X: 0, Y: 0, Z: 0})
+								if message.Servidor == 0 {
+									listaReloj[len(listaReloj)-1].X += 1
+								}
+								if message.Servidor == 1 {
+									listaReloj[len(listaReloj)-1].Y += 1
+								}
+								if message.Servidor == 2 {
+									listaReloj[len(listaReloj)-1].Z += 1
+								}
+							}
 						}
 					}
 				}
@@ -367,11 +462,51 @@ func main() {
 					log.Println("Existe consistencia Read Your Writes")
 				}
 
-				// SE BUSCA EL PLANETA Y LA CIUDAD PARA ACTUALIZAR ESE DATO
+				// SE BUSCA EL PLANETA Y LA CIUDAD PARA ELIMINAR ESE DATO
 				var i = 0
 				for i = 0; i < len(listaPlanetas); i++ {
 					if listaPlanetas[i].Planeta == message.Planeta && listaPlanetas[i].Ciudad == message.Ciudad {
-						break
+						// SE ACTUALIZA EL RELOJ
+						var planetaEsta = false
+						if (len(listaReloj) == 0) {
+							listaReloj = append(listaReloj, vectorReloj{Planeta: message.Planeta, X: 0, Y: 0, Z: 0})
+							if message.Servidor == 0 {
+								listaReloj[0].X += 1
+							}
+							if message.Servidor == 1 {
+								listaReloj[0].Y += 1
+							}
+							if message.Servidor == 2 {
+								listaReloj[0].Z += 1
+							}
+						} else {
+							for i := 0; i < len(listaReloj); i++ {
+								if listaReloj[i].Planeta == message.Planeta {
+									planetaEsta = true
+									if message.Servidor == 0 {
+										listaReloj[i].X += 1
+									}
+									if message.Servidor == 1 {
+										listaReloj[i].Y += 1
+									}
+									if message.Servidor == 2 {
+										listaReloj[i].Z += 1
+									}
+								}
+							}
+							if !planetaEsta {
+								listaReloj = append(listaReloj, vectorReloj{Planeta: message.Planeta, X: 0, Y: 0, Z: 0})
+								if message.Servidor == 0 {
+									listaReloj[len(listaReloj)-1].X += 1
+								}
+								if message.Servidor == 1 {
+									listaReloj[len(listaReloj)-1].Y += 1
+								}
+								if message.Servidor == 2 {
+									listaReloj[len(listaReloj)-1].Z += 1
+								}
+							}
+						}
 					}
 				}
 
