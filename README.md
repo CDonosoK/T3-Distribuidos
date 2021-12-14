@@ -30,37 +30,37 @@ En cada máquina aparecerán las instrucciones sobre como continuar, para que as
 Es importante aclarar que las máquinas dis70, dis71 y dis72 deben ejecutar los comandos en distintas terminales.
 - **Se debe ejecutar en la máquina dist69 el comando:**
 
-``` go run brokerMosEisley.go```
+``` make Broker```
 
 En dicha terminal se ejecutará el broker MosEisley y aparecerá por consola todo lo enviado (tanto por los informantes como la princesa leia)
 
 - **Se debe ejecutar en la máquina dist70 el comando:**
 
-``` go run sercidorFulcrum1.go``` 
+``` make Fulcrum1``` 
 
 En el servidor Fulcrum 1 aparecerá por consola todo lo que está ocurriendo (recibiendo), tanto por los informantes como la princesa leia
 
-``` go run ahsokaTano.go ``` 
+``` make Ahsoka ``` 
 
 En la terminal de Ahsoka Tano aparecerán los comandos que se pueden realizar por parte de los informantes
 
 - **Se debe ejecutar en la máquina dist71 el comando:**
 
-``` go run sercidorFulcrum2.go ``` 
+``` make Fulcrum2 ``` 
 
 En el servidor Fulcrum 2 aparecerá por consola todo lo que está ocurriendo (recibiendo), tanto por los informantes como la princesa leia
 
-``` go run almiranteThrawn.go``` 
+``` make Almirante``` 
 
 En la terminal del Almirante Thrawn aparecerán los comandos que se pueden realizar por parte de los informantes
 
 - **Se debe ejecutar en la máquina dist72 el comando:**
 
-``` go run sercidorFulcrum3.go``` 
+``` make Fulcrum3 ``` 
 
 En el servidor Fulcrum 3 aparecerá por consola todo lo que está ocurriendo (recibiendo), tanto por los informantes como la princesa leia 
 
-``` go run princesaLeia.go``` 
+``` make Leia ``` 
 
 En la terminal de la Princesa Leia aparecerán los comandos que se pueden realizar por parte de la princesa leia
 
